@@ -8,12 +8,13 @@
     "react-highcharts": "^7.0.0"
   },
   "devDependencies": {
-    "react": "^0.14.7",
-    "gulp": "*",
-    "gulp-typescript": "*",
-    "gulp-react": "*",
     "browserify": "*",
-    "vinyl-source-stream": "*",
-    "merge2": "*"
+    "gulp": "*",
+    "gulp-react": "*",
+    "gulp-typescript": "*",
+    "merge2": "*",
+    "react": "^0.14.7",
+    "typescript": "^2.6.2",
+    "vinyl-source-stream": "*"
   }
 }
