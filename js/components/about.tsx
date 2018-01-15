@@ -30,7 +30,7 @@ class About extends React.Component<IAboutProps, IAboutState> {
     return (
       <section className="about">
         <h2>Now copy paste decks directly from ThronesDB! Just select and copy the decklist directly from either the edit or view screen</h2>
-        <h3>Latest Full Pack: House of Thorns</h3>
+        <h3>Latest Full Pack: Journey To Oldtown</h3>
         <p>To use this get your deck in text format and paste into the box on the right. Thronesdb's text download option is this format exactly, though I'm sure other editors can provide a similar format</p>
         <p>This tool was made to analyze the setup strength of various decks. After importing your deck it will draw random set up hands (right now 5,000 hands), and determine the best(ish) possible setup and gather stats. Right now it's logic is can probably be better. There are settings for determining hand quality and mulligans which can be found on the "Configure" tab after importing. The rules this currently uses to determine the <em>best</em> setup from a hand are as followed: </p>
         <ol>
@@ -45,7 +45,7 @@ class About extends React.Component<IAboutProps, IAboutState> {
         </ol>
 
         <h2>Wardens of the Golden Gate</h2>
-        <p>I recently started a YouTube channel from our local meta. <a href="https://www.youtube.com/channel/UCuiQd1d6TXY-Az59-1tqY_w/featured">Check it out!</a> Here is a recent video!</p>
+        <p><strong>Update: I haven't done anything with this lately... but maybe again someday!</strong> I recently started a YouTube channel from our local meta. <a href="https://www.youtube.com/channel/UCuiQd1d6TXY-Az59-1tqY_w/featured">Check it out!</a> Here is a recent video!</p>
         <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLVL91rSgTFRKfpXe9m01kQKuL0cSXam9-" frameBorder="0" allowFullScreen></iframe>        <p>Finally, some credit/shout outs to resources I used to make this, or resources I find valuable:</p>
         <ol>
           <li><a href="http://thronesdb.com/">ThronesDB</a>, where I shameless pulled all card data from and serve images from directly</li>
@@ -53,7 +53,7 @@ class About extends React.Component<IAboutProps, IAboutState> {
           <li><a href="http://www.cardgamedb.com/index.php/podcasts/_/game-of-thrones-beyond-the-wall/">Beyond the Wall</a> and <a href="http://www.whitebookpodcast.com/">The White Book Podcast</a></li>
           <li>This <a href="https://www.youtube.com/watch?v=gwrEnx84qr4">DobblerTalk on set ups</a> where my rules were inspired from</li>
         </ol>
-        <p>Now maybe your wonder how you could ever pay me back, maybe you ran your deck through here and the same set up it showed you was so awful you want to yell at me. Well you can contact me at <a href="mailto:jason@red5dev.com">jason@red5dev.com</a>. As I mentioned I'm pretty new to this game, so I also accept general tips, tricks, decklists and things of that nature.</p>
+        <p>Now maybe your wonder how you could ever pay me back, maybe you ran your deck through here and the same set up it showed you was so awful you want to yell at me. Well you can contact me at <a href="mailto:jason@red5dev.com">jason@red5dev.com</a>.</p>
       </section>
     );
   }
