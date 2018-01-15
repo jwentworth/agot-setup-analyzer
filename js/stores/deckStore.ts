@@ -27,7 +27,7 @@ class DeckStoreStatic implements IDeckStore {
     var self = this;
 
     //TODO: Move cards to their own store, and move API call to it's own API
-    var req = $.get("js/data/cards.json", function (result) {
+    var req = $.get("dist/cards.json", function (result) {
       result.forEach((cardData) => {
         self.allCards[cardData['pack_name'] + " - " + cardData['name']] = cardData;
       });
@@ -166,6 +166,11 @@ class DeckStoreStatic implements IDeckStore {
   private addIncomeBonus(card:ICard){
     var incomeRegex = new RegExp('\\+([0-9]) Income', 'g');
     var incomeMatches = incomeRegex.exec(card.text);
+
+    if ('is_econ' in card){
+      //data is manually set, don't determine it now
+      return;
+    }
 
     card.income = 0;
     card.is_econ = false;

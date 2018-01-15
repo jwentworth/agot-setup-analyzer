@@ -27,7 +27,7 @@ class DeckStoreStatic implements IDeckStore {
     var self = this;
 
     //TODO: Move cards to their own store, and move API call to it's own API section
-    var req = $.get("js/data/cards.json", function (result) {
+    var req = $.get("dist/cards.json", function (result) {
       result.forEach((cardData) => {
         self.allCards[cardData['pack_name'] + " - " + cardData['name']] = cardData;
       });

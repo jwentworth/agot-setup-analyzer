@@ -431,8 +431,6 @@ class SimulationStats extends React.Component<ISimulationStatsProps, ISimulation
       var withMulligan = Math.round(10000*this.props.stats.cardCounts[i] / this.props.stats.simulations)/100;
       var withoutMuligan = Math.round(10000*this.props.noMulliganStats.cardCounts[i] / this.props.stats.simulations)/100;
 
-      cardUsageData.series[0].data.push(withMulligan);
-      cardUsageData.series[1].data.push(withoutMuligan);
       cardUsageData.series[2].data[i].push(withMulligan);
     }
 

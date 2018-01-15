@@ -10,6 +10,10 @@
   "devDependencies": {
     "browserify": "*",
     "gulp": "*",
+    "gulp-json-concat": "^0.1.1",
+    "gulp-jsonmin": "^1.1.0",
+    "gulp-merge-json": "^1.2.1",
+    "gulp-minify": "^2.1.0",
     "gulp-react": "*",
     "gulp-typescript": "*",
     "merge2": "*",
