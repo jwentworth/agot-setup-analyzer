@@ -1,4 +1,5 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+"use strict";
 var DeckActionID = (function () {
     function DeckActionID() {
     }
@@ -8,10 +9,11 @@ var DeckActionID = (function () {
     DeckActionID.MARK_NEVER_CARD = "DECK.MARK_NEVER_CARD";
     DeckActionID.MARK_ECON = "DECK.MARK_ECON";
     return DeckActionID;
-})();
+}());
 module.exports = DeckActionID;
 
 },{}],2:[function(require,module,exports){
+"use strict";
 var SetupActionID = (function () {
     function SetupActionID() {
     }
@@ -29,12 +31,14 @@ var SetupActionID = (function () {
     SetupActionID.TOGGLE_REQUIRE_FOUR_COST_CHARACTER = "SETUP.TOGGLE_REQUIRE_FOUR_COST_CHARACTER";
     SetupActionID.TEST = "TEST";
     return SetupActionID;
-})();
+}());
 module.exports = SetupActionID;
 
 },{}],3:[function(require,module,exports){
-var AppDispatcher = require('../dispatcher/appDispatcher');
-var SetupActionID = require('./setupActionId');
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var AppDispatcher = require("../dispatcher/appDispatcher");
+var SetupActionID = require("./setupActionId");
 var SetupActionsStatic = (function () {
     function SetupActionsStatic(dispatcher) {
         this.SetupActionID = SetupActionID;
@@ -53,7 +57,7 @@ var SetupActionsStatic = (function () {
         });
     };
     return SetupActionsStatic;
-})();
+}());
 var SetupActions = new SetupActionsStatic(AppDispatcher);
 exports.SetupActions = SetupActions;
 AppDispatcher.dispatch({
@@ -68,21 +72,29 @@ arguments[4][2][0].apply(exports,arguments)
 },{"dup":2}],6:[function(require,module,exports){
 arguments[4][2][0].apply(exports,arguments)
 },{"dup":2}],7:[function(require,module,exports){
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var SetupStore = require('./stores/setupStore');
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var SetupStore = require("./stores/setupStore");
 var DeckImport_1 = require("./components/DeckImport");
 var Simulation_1 = require("./components/Simulation");
 var DeckAnalyzerApp = (function (_super) {
     __extends(DeckAnalyzerApp, _super);
     function DeckAnalyzerApp(props) {
-        _super.call(this, props);
-        this.state = {
+        var _this = _super.call(this, props) || this;
+        _this.state = {
             editing: null
         };
+        return _this;
     }
     DeckAnalyzerApp.prototype.render = function () {
         var options = {
@@ -124,53 +136,80 @@ var DeckAnalyzerApp = (function (_super) {
             ]
         };
         var simulation = "";
-        return (React.createElement("div", null, React.createElement("header", {"className": "header"}, React.createElement("h1", null, "agot setup analyzer")), React.createElement("section", {"className": "main"}, React.createElement(DeckImport_1.DeckImport, {"deck": this.props.setup.deck}), React.createElement(Simulation_1.Simulation, {"setup": this.props.setup, "deck": this.props.setup.deck}))));
+        return (React.createElement("div", null,
+            React.createElement("header", { className: "header" },
+                React.createElement("h1", null, "agot setup analyzer")),
+            React.createElement("section", { className: "main" },
+                React.createElement(DeckImport_1.DeckImport, { deck: this.props.setup.deck }),
+                React.createElement(Simulation_1.Simulation, { setup: this.props.setup, deck: this.props.setup.deck }))));
     };
     return DeckAnalyzerApp;
-})(React.Component);
+}(React.Component));
 function render() {
-    ReactDOM.render(React.createElement(DeckAnalyzerApp, {"setup": SetupStore}), document.getElementsByClassName('setup-app')[0]);
+    ReactDOM.render(React.createElement(DeckAnalyzerApp, { setup: SetupStore }), document.getElementsByClassName('setup-app')[0]);
 }
 SetupStore.subscribe(render);
 render();
 
 },{"./components/DeckImport":9,"./components/Simulation":10,"./stores/setupStore":19}],8:[function(require,module,exports){
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
 var CardItem = (function (_super) {
     __extends(CardItem, _super);
     function CardItem(props) {
-        _super.call(this, props);
-        this.state = { editText: this.props.card.name };
+        var _this = _super.call(this, props) || this;
+        _this.state = { editText: _this.props.card.name };
+        return _this;
     }
     CardItem.prototype.shouldComponentUpdate = function (nextProps, nextState) {
         return false;
     };
     CardItem.prototype.render = function () {
         var image = "http://thronesdb.com/" + this.props.card.imagesrc;
-        return (React.createElement("li", null, React.createElement("img", {"src": image}), React.createElement("span", {"className": "count"}, "x", this.props.card.count), React.createElement("span", {"className": "setup-percent"}, Math.round(100 * this.props.card.setup_count / this.props.simulations), "%")));
+        return (React.createElement("li", null,
+            React.createElement("img", { src: image }),
+            React.createElement("span", { className: "count" },
+                "x",
+                this.props.card.count),
+            React.createElement("span", { className: "setup-percent" },
+                Math.round(100 * this.props.card.setup_count / this.props.simulations),
+                "%")));
     };
     return CardItem;
-})(React.Component);
+}(React.Component));
 exports.CardItem = CardItem;
 
 },{}],9:[function(require,module,exports){
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var AppDispatcher = require('../dispatcher/AppDispatcher');
-var DeckActionID = require('../actions/deckActionID');
-var SetupActionID = require('../actions/SetupActionID');
-var SetupActions_1 = require('../actions/SetupActions');
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var AppDispatcher = require("../dispatcher/AppDispatcher");
+var DeckActionID = require("../actions/deckActionID");
+var SetupActionID = require("../actions/SetupActionID");
+var SetupActions_1 = require("../actions/SetupActions");
 var DeckImport = (function (_super) {
     __extends(DeckImport, _super);
     function DeckImport(props) {
-        _super.call(this, props);
+        return _super.call(this, props) || this;
     }
     DeckImport.prototype.shouldComponentUpdate = function (nextProps, nextState) {
         return false;
@@ -193,10 +232,12 @@ var DeckImport = (function (_super) {
     };
     DeckImport.prototype.render = function () {
         var _this = this;
-        return (React.createElement("section", {"className": "import"}, React.createElement("button", {"onClick": function (e) { return _this.handleImportDeck(e); }}, "Load"), React.createElement("textarea", {"ref": "deckText", "className": "deck-import", "placeholder": "Copy your decklist here", "autoFocus": true})));
+        return (React.createElement("section", { className: "import" },
+            React.createElement("button", { onClick: function (e) { return _this.handleImportDeck(e); } }, "Load"),
+            React.createElement("textarea", { ref: "deckText", className: "deck-import", placeholder: "Copy your decklist here", autoFocus: true })));
     };
     return DeckImport;
-})(React.Component);
+}(React.Component));
 exports.DeckImport = DeckImport;
 AppDispatcher.dispatch({
     actionType: "SETUP",
@@ -204,24 +245,32 @@ AppDispatcher.dispatch({
 });
 
 },{"../actions/SetupActionID":2,"../actions/SetupActions":3,"../actions/deckActionID":4,"../dispatcher/AppDispatcher":16}],10:[function(require,module,exports){
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
 var about_1 = require("./about");
 var configure_1 = require("./configure");
 var simulationStats_1 = require("./simulationStats");
 var setupExample_1 = require("./setupExample");
-var AppDispatcher = require('../dispatcher/AppDispatcher');
-var SetupActionID = require('../actions/SetupActionID');
+var AppDispatcher = require("../dispatcher/AppDispatcher");
+var SetupActionID = require("../actions/SetupActionID");
 var Simulation = (function (_super) {
     __extends(Simulation, _super);
     function Simulation(props) {
-        _super.call(this, props);
-        this.props.setup.subscribe(this._onChange.bind(this));
-        this.props.deck.subscribe(this._onChange.bind(this));
-        this.state = this.getStateFromStores();
+        var _this = _super.call(this, props) || this;
+        _this.props.setup.subscribe(_this._onChange.bind(_this));
+        _this.props.deck.subscribe(_this._onChange.bind(_this));
+        _this.state = _this.getStateFromStores();
+        return _this;
     }
     Simulation.prototype._onChange = function () {
         this.setState(this.getStateFromStores());
@@ -240,54 +289,138 @@ var Simulation = (function (_super) {
     };
     Simulation.prototype.render = function () {
         if (this.state.percentage == 0) {
-            return (React.createElement("section", {"className": "simulation"}, React.createElement("section", {"className": "example"}, React.createElement(about_1.About, null))));
+            return (React.createElement("section", { className: "simulation" },
+                React.createElement("section", { className: "example" },
+                    React.createElement(about_1.About, null))));
         }
         var top = null;
         if (this.state.percentage < 100) {
-            top = (React.createElement("div", {"className": "progress"}, React.createElement("div", {"className": "progress-bar", "role": "progressbar", "aria-valuenow": "{this.state.percentage}", "aria-valuemin": "0", "aria-valuemax": "100", "style": { width: this.state.percentage + '%' }}, "Simulating... ", this.state.percentage, "%")));
+            top = (React.createElement("div", { className: "progress" },
+                React.createElement("div", { className: "progress-bar", role: "progressbar", "aria-valuenow": "{this.state.percentage}", "aria-valuemin": "0", "aria-valuemax": "100", style: { width: this.state.percentage + '%' } },
+                    "Simulating... ",
+                    this.state.percentage,
+                    "%")));
         }
         else {
-            top = (React.createElement("button", {"className": "action", "onClick": this.rerunSimulation}, "Rerun Simulation"));
+            top = (React.createElement("button", { className: "action", onClick: this.rerunSimulation }, "Rerun Simulation"));
         }
-        return (React.createElement("section", {"className": "simulation"}, top, React.createElement("div", {"className": "worko-tabs"}, React.createElement("input", {"className": "state", "type": "radio", "title": "tab-one", "name": "tabs-state", "id": "tab-one", "defaultChecked": true}), React.createElement("input", {"className": "state", "type": "radio", "title": "tab-two", "name": "tabs-state", "id": "tab-two"}), React.createElement("input", {"className": "state", "type": "radio", "title": "tab-three", "name": "tabs-state", "id": "tab-three"}), React.createElement("input", {"className": "state", "type": "radio", "title": "tab-four", "name": "tabs-state", "id": "tab-four"}), React.createElement("div", {"className": "tabs flex-tabs"}, React.createElement("label", {"htmlFor": "tab-one", "id": "tab-one-label", "className": "tab"}, "Stats"), React.createElement("label", {"htmlFor": "tab-two", "id": "tab-two-label", "className": "tab"}, "Examples"), React.createElement("label", {"htmlFor": "tab-three", "id": "tab-three-label", "className": "tab"}, "Configure"), React.createElement("label", {"htmlFor": "tab-four", "id": "tab-four-label", "className": "tab"}, "About"), React.createElement("div", {"id": "tab-one-panel", "className": "panel active"}, React.createElement("section", {"className": "content"}, React.createElement(simulationStats_1.SimulationStats, {"setups": this.props.setup.setups, "stats": this.props.setup.getStats(), "noMulliganStats": this.props.setup.getNoMulliganStats(), "displayDeck": this.props.deck.getDisplayDeck()}))), React.createElement("div", {"id": "tab-two-panel", "className": "panel"}, React.createElement(setupExample_1.SetupExample, {"setups": this.props.setup.setups, "drawDeck": this.props.deck.getDrawDeck()})), React.createElement("div", {"id": "tab-three-panel", "className": "panel"}, React.createElement(configure_1.Configure, {"settings": this.props.setup.getSettings(), "displayDeck": this.props.deck.getDisplayDeck()})), React.createElement("div", {"id": "tab-four-panel", "className": "panel"}, React.createElement(about_1.About, null))))));
+        return (React.createElement("section", { className: "simulation" },
+            top,
+            React.createElement("div", { className: "worko-tabs" },
+                React.createElement("input", { className: "state", type: "radio", title: "tab-one", name: "tabs-state", id: "tab-one", defaultChecked: true }),
+                React.createElement("input", { className: "state", type: "radio", title: "tab-two", name: "tabs-state", id: "tab-two" }),
+                React.createElement("input", { className: "state", type: "radio", title: "tab-three", name: "tabs-state", id: "tab-three" }),
+                React.createElement("input", { className: "state", type: "radio", title: "tab-four", name: "tabs-state", id: "tab-four" }),
+                React.createElement("div", { className: "tabs flex-tabs" },
+                    React.createElement("label", { htmlFor: "tab-one", id: "tab-one-label", className: "tab" }, "Stats"),
+                    React.createElement("label", { htmlFor: "tab-two", id: "tab-two-label", className: "tab" }, "Examples"),
+                    React.createElement("label", { htmlFor: "tab-three", id: "tab-three-label", className: "tab" }, "Configure"),
+                    React.createElement("label", { htmlFor: "tab-four", id: "tab-four-label", className: "tab" }, "About"),
+                    React.createElement("div", { id: "tab-one-panel", className: "panel active" },
+                        React.createElement("section", { className: "content" },
+                            React.createElement(simulationStats_1.SimulationStats, { setups: this.props.setup.setups, stats: this.props.setup.getStats(), noMulliganStats: this.props.setup.getNoMulliganStats(), displayDeck: this.props.deck.getDisplayDeck() }))),
+                    React.createElement("div", { id: "tab-two-panel", className: "panel" },
+                        React.createElement(setupExample_1.SetupExample, { setups: this.props.setup.setups, drawDeck: this.props.deck.getDrawDeck() })),
+                    React.createElement("div", { id: "tab-three-panel", className: "panel" },
+                        React.createElement(configure_1.Configure, { settings: this.props.setup.getSettings(), displayDeck: this.props.deck.getDisplayDeck() })),
+                    React.createElement("div", { id: "tab-four-panel", className: "panel" },
+                        React.createElement(about_1.About, null))))));
     };
     return Simulation;
-})(React.Component);
+}(React.Component));
 exports.Simulation = Simulation;
 
 },{"../actions/SetupActionID":2,"../dispatcher/AppDispatcher":16,"./about":11,"./configure":13,"./setupExample":14,"./simulationStats":15}],11:[function(require,module,exports){
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
 var About = (function (_super) {
     __extends(About, _super);
     function About(props) {
-        _super.call(this, props);
+        return _super.call(this, props) || this;
     }
     About.prototype.shouldComponentUpdate = function (nextProps, nextState) {
         return false;
     };
     About.prototype.render = function () {
-        return (React.createElement("section", {"className": "about"}, React.createElement("h2", null, "Now copy paste decks directly from ThronesDB! Just select and copy the decklist directly from either the edit or view screen"), React.createElement("h3", null, "Latest Full Pack: Ghosts of Harrenhal"), React.createElement("p", null, "To use this get your deck in text format and paste into the box on the right. Thronesdb's text download option is this format exactly, though I'm sure other editors can provide a similar format"), React.createElement("p", null, "This tool was made to analyze the setup strength of various decks. After importing your deck it will draw random set up hands (right now 5,000 hands), and determine the best(ish) possible setup and gather stats. Right now it's logic is can probably be better. There are settings for determining hand quality and mulligans which can be found on the \"Configure\" tab after importing. The rules this currently uses to determine the ", React.createElement("em", null, "best"), " setup from a hand are as followed: "), React.createElement("ol", null, React.createElement("li", null, "The set up must have at least 2 characters (not counting dupes). Any possible set up with 1 or 0 characters will not be used if a set up can be made with 2 or more characters. This is configurable on the \"Configure\" tab"), React.createElement("li", null, "Total cards used is the next criteria. Any possible set up using more cards then another possible set up will be choose. Characters with enter play affects will ony be used if there is nothing else to use the gold on"), React.createElement("li", null, "Assuming number of cards are tied, a set up using more gold will be used in favor of a set up using less gold. Incoming providing card are considered as \"extra gold\" for this determination"), React.createElement("li", null, "If it is still tied, setup hands that use a limited card will be prioritized"), React.createElement("li", null, "Assuming used cards and gold are tied total distinct characters used will be the next criteria. Ex. If one possible set up uses 4 cards, 8 gold, and has 3 characters, it will be choosen over one that uses 4 cards, 8 gold, and uses 2 characters."), React.createElement("li", null, "If all of that is equal, it will use the possible set up with the most strength on characters"), React.createElement("li", null, "If it's still tied, then it'll choose one of the tied possible set ups randomly"), React.createElement("li", null, "This will also perform mulligans if cards do not meet minimum card requirements. You can configure when to mulligan in the \"Configure\" tab")), React.createElement("h2", null, "Wardens of the Golden Gate"), React.createElement("p", null, "I recently started a YouTube channel from our local meta. ", React.createElement("a", {"href": "https://www.youtube.com/channel/UCuiQd1d6TXY-Az59-1tqY_w/featured"}, "Check it out!"), " Here is a recent video!"), React.createElement("iframe", {"width": "560", "height": "315", "src": "https://www.youtube.com/embed/videoseries?list=PLVL91rSgTFRKfpXe9m01kQKuL0cSXam9-", "frameBorder": "0", "allowFullScreen": true}), "        ", React.createElement("p", null, "Finally, some credit/shout outs to resources I used to make this, or resources I find valuable:"), React.createElement("ol", null, React.createElement("li", null, React.createElement("a", {"href": "http://thronesdb.com/"}, "ThronesDB"), ", where I shameless pulled all card data from and serve images from directly"), React.createElement("li", null, React.createElement("a", {"href": "http://agotannals.com/"}, "The Annals"), " where I go to find recent tournament results to find which deck to build or build against"), React.createElement("li", null, React.createElement("a", {"href": "http://www.cardgamedb.com/index.php/podcasts/_/game-of-thrones-beyond-the-wall/"}, "Beyond the Wall"), " and ", React.createElement("a", {"href": "http://www.whitebookpodcast.com/"}, "The White Book Podcast")), React.createElement("li", null, "This ", React.createElement("a", {"href": "https://www.youtube.com/watch?v=gwrEnx84qr4"}, "DobblerTalk on set ups"), " where my rules were inspired from")), React.createElement("p", null, "Now maybe your wonder how you could ever pay me back, maybe you ran your deck through here and the same set up it showed you was so awful you want to yell at me. Well you can contact me at ", React.createElement("a", {"href": "mailto:jason@red5dev.com"}, "jason@red5dev.com"), ". As I mentioned I'm pretty new to this game, so I also accept general tips, tricks, decklists and things of that nature.")));
+        return (React.createElement("section", { className: "about" },
+            React.createElement("h2", null, "Now copy paste decks directly from ThronesDB! Just select and copy the decklist directly from either the edit or view screen"),
+            React.createElement("h3", null, "Latest Full Pack: Journey To Oldtown"),
+            React.createElement("p", null, "To use this get your deck in text format and paste into the box on the right. Thronesdb's text download option is this format exactly, though I'm sure other editors can provide a similar format"),
+            React.createElement("p", null,
+                "This tool was made to analyze the setup strength of various decks. After importing your deck it will draw random set up hands (right now 5,000 hands), and determine the best(ish) possible setup and gather stats. Right now it's logic is can probably be better. There are settings for determining hand quality and mulligans which can be found on the \"Configure\" tab after importing. The rules this currently uses to determine the ",
+                React.createElement("em", null, "best"),
+                " setup from a hand are as followed: "),
+            React.createElement("ol", null,
+                React.createElement("li", null, "The set up must have at least 2 characters (not counting dupes). Any possible set up with 1 or 0 characters will not be used if a set up can be made with 2 or more characters. This is configurable on the \"Configure\" tab"),
+                React.createElement("li", null, "Total cards used is the next criteria. Any possible set up using more cards then another possible set up will be choose. Characters with enter play affects will ony be used if there is nothing else to use the gold on"),
+                React.createElement("li", null, "Assuming number of cards are tied, a set up using more gold will be used in favor of a set up using less gold. Incoming providing card are considered as \"extra gold\" for this determination"),
+                React.createElement("li", null, "If it is still tied, setup hands that use a limited card will be prioritized"),
+                React.createElement("li", null, "Assuming used cards and gold are tied total distinct characters used will be the next criteria. Ex. If one possible set up uses 4 cards, 8 gold, and has 3 characters, it will be choosen over one that uses 4 cards, 8 gold, and uses 2 characters."),
+                React.createElement("li", null, "If all of that is equal, it will use the possible set up with the most strength on characters"),
+                React.createElement("li", null, "If it's still tied, then it'll choose one of the tied possible set ups randomly"),
+                React.createElement("li", null, "This will also perform mulligans if cards do not meet minimum card requirements. You can configure when to mulligan in the \"Configure\" tab")),
+            React.createElement("h2", null, "Wardens of the Golden Gate"),
+            React.createElement("p", null,
+                React.createElement("strong", null, "Update: I haven't done anything with this lately... but maybe again someday!"),
+                " I recently started a YouTube channel from our local meta. ",
+                React.createElement("a", { href: "https://www.youtube.com/channel/UCuiQd1d6TXY-Az59-1tqY_w/featured" }, "Check it out!"),
+                " Here is a recent video!"),
+            React.createElement("iframe", { width: "560", height: "315", src: "https://www.youtube.com/embed/videoseries?list=PLVL91rSgTFRKfpXe9m01kQKuL0cSXam9-", frameBorder: "0", allowFullScreen: true }),
+            "        ",
+            React.createElement("p", null, "Finally, some credit/shout outs to resources I used to make this, or resources I find valuable:"),
+            React.createElement("ol", null,
+                React.createElement("li", null,
+                    React.createElement("a", { href: "http://thronesdb.com/" }, "ThronesDB"),
+                    ", where I shameless pulled all card data from and serve images from directly"),
+                React.createElement("li", null,
+                    React.createElement("a", { href: "http://agotannals.com/" }, "The Annals"),
+                    " where I go to find recent tournament results to find which deck to build or build against"),
+                React.createElement("li", null,
+                    React.createElement("a", { href: "http://www.cardgamedb.com/index.php/podcasts/_/game-of-thrones-beyond-the-wall/" }, "Beyond the Wall"),
+                    " and ",
+                    React.createElement("a", { href: "http://www.whitebookpodcast.com/" }, "The White Book Podcast")),
+                React.createElement("li", null,
+                    "This ",
+                    React.createElement("a", { href: "https://www.youtube.com/watch?v=gwrEnx84qr4" }, "DobblerTalk on set ups"),
+                    " where my rules were inspired from")),
+            React.createElement("p", null,
+                "Now maybe your wonder how you could ever pay me back, maybe you ran your deck through here and the same set up it showed you was so awful you want to yell at me. Well you can contact me at ",
+                React.createElement("a", { href: "mailto:jason@red5dev.com" }, "jason@red5dev.com"),
+                ".")));
     };
     return About;
-})(React.Component);
+}(React.Component));
 exports.About = About;
 
 },{}],12:[function(require,module,exports){
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
-var AppDispatcher = require('../dispatcher/AppDispatcher');
-var DeckActionID = require('../actions/deckActionID');
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var AppDispatcher = require("../dispatcher/AppDispatcher");
+var DeckActionID = require("../actions/deckActionID");
 var CardSettings = (function (_super) {
     __extends(CardSettings, _super);
     function CardSettings(props) {
-        _super.call(this, props);
+        return _super.call(this, props) || this;
     }
     CardSettings.prototype.onMarkKey = function () {
         AppDispatcher.dispatch({
@@ -333,30 +466,49 @@ var CardSettings = (function (_super) {
         if (card.type_code == 'character'
             || card.type_code == 'attachment'
             || card.type_code == 'location') {
-            controls = (React.createElement("div", {"className": "controls"}, React.createElement("button", {"className": "key-button", "onClick": this.onMarkKey.bind(this)}, React.createElement("i", {"className": "fa fa-key fa-fw"})), React.createElement("button", {"className": "income-button", "onClick": this.onMarkEcon.bind(this)}, React.createElement("i", {"className": "fa fa-dollar fa-fw"})), React.createElement("button", {"className": "avoid-button", "onClick": this.onMarkAvoided.bind(this)}, React.createElement("i", {"className": "fa fa-exclamation-triangle fa-fw"})), React.createElement("button", {"className": "restricted-button", "onClick": this.onMarkRestricted.bind(this)}, React.createElement("i", {"className": "fa fa-ban fa-fw"}))));
+            controls = (React.createElement("div", { className: "controls" },
+                React.createElement("button", { className: "key-button", onClick: this.onMarkKey.bind(this) },
+                    React.createElement("i", { className: "fa fa-key fa-fw" })),
+                React.createElement("button", { className: "income-button", onClick: this.onMarkEcon.bind(this) },
+                    React.createElement("i", { className: "fa fa-dollar fa-fw" })),
+                React.createElement("button", { className: "avoid-button", onClick: this.onMarkAvoided.bind(this) },
+                    React.createElement("i", { className: "fa fa-exclamation-triangle fa-fw" })),
+                React.createElement("button", { className: "restricted-button", onClick: this.onMarkRestricted.bind(this) },
+                    React.createElement("i", { className: "fa fa-ban fa-fw" }))));
         }
         else {
-            controls = (React.createElement("div", {"className": "controls"}, React.createElement("button", {"className": "active"}, React.createElement("i", {"className": "fa fa-ban fa-fw"}))));
+            controls = (React.createElement("div", { className: "controls" },
+                React.createElement("button", { className: "active" },
+                    React.createElement("i", { className: "fa fa-ban fa-fw" }))));
         }
-        return (React.createElement("div", {"className": className}, React.createElement("img", {"src": image}), controls));
+        return (React.createElement("div", { className: className },
+            React.createElement("img", { src: image }),
+            controls));
     };
     return CardSettings;
-})(React.Component);
+}(React.Component));
 exports.CardSettings = CardSettings;
 
 },{"../actions/deckActionID":4,"../dispatcher/AppDispatcher":16}],13:[function(require,module,exports){
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
 var cardSettings_1 = require("./cardSettings");
-var AppDispatcher = require('../dispatcher/AppDispatcher');
-var SetupActionID = require('../actions/SetupActionID');
+var AppDispatcher = require("../dispatcher/AppDispatcher");
+var SetupActionID = require("../actions/SetupActionID");
 var Configure = (function (_super) {
     __extends(Configure, _super);
     function Configure(props) {
-        _super.call(this, props);
+        return _super.call(this, props) || this;
     }
     Configure.prototype.cardSort = function (c1, c2) {
         if (c1.cost != c2.cost) {
@@ -427,62 +579,165 @@ var Configure = (function (_super) {
         var avoidedCards = displayDeck.filter(function (card) { return card.is_avoided; }).sort(this.cardSort);
         var avoidedItems = avoidedCards.sort(this.cardSort).map(function (card) {
             i++;
-            return (React.createElement(cardSettings_1.CardSettings, {"key": card.code, "card": card}));
+            return (React.createElement(cardSettings_1.CardSettings, { key: card.code, card: card }));
         });
         var avoided = null;
         if (avoidedCards.length > 0) {
-            avoided = (React.createElement("div", null, React.createElement("div", null, "Try to Avoid Cards:"), React.createElement("div", {"className": "card-list"}, avoidedItems)));
+            avoided = (React.createElement("div", null,
+                React.createElement("div", null, "Try to Avoid Cards:"),
+                React.createElement("div", { className: "card-list" }, avoidedItems)));
         }
         var keyCards = displayDeck.filter(function (card) { return card.is_key_card; }).sort(this.cardSort);
         var keyItems = keyCards.sort(this.cardSort).map(function (card) {
             i++;
-            return (React.createElement(cardSettings_1.CardSettings, {"key": card.code, "card": card}));
+            return (React.createElement(cardSettings_1.CardSettings, { key: card.code, card: card }));
         });
         var key = null;
         if (keyCards.length > 0) {
-            key = (React.createElement("div", null, React.createElement("div", null, "Key cards:"), React.createElement("div", {"className": "card-list"}, keyItems)));
+            key = (React.createElement("div", null,
+                React.createElement("div", null, "Key cards:"),
+                React.createElement("div", { className: "card-list" }, keyItems)));
         }
         var restrictedCards = displayDeck.filter(function (card) { return card.is_restricted; }).sort(this.cardSort);
         var restrictedItems = restrictedCards.map(function (card) {
             i++;
-            return (React.createElement(cardSettings_1.CardSettings, {"key": card.code, "card": card}));
+            return (React.createElement(cardSettings_1.CardSettings, { key: card.code, card: card }));
         });
         var restricted = null;
         if (restrictedCards.length > 0) {
-            restricted = (React.createElement("div", null, React.createElement("div", null, "Restricted Cards:"), React.createElement("div", {"className": "card-list"}, restrictedItems)));
+            restricted = (React.createElement("div", null,
+                React.createElement("div", null, "Restricted Cards:"),
+                React.createElement("div", { className: "card-list" }, restrictedItems)));
         }
         var econCards = displayDeck.filter(function (card) { return card.is_econ && !card.is_avoided && !card.is_key_card; }).sort(this.cardSort);
         var econItems = econCards.map(function (card) {
             i++;
-            return (React.createElement(cardSettings_1.CardSettings, {"key": card.code, "card": card}));
+            return (React.createElement(cardSettings_1.CardSettings, { key: card.code, card: card }));
         });
         var econ = null;
         if (econCards.length > 0) {
-            econ = (React.createElement("div", null, React.createElement("div", null, "Econ Cards:"), React.createElement("div", {"className": "card-list"}, econItems)));
+            econ = (React.createElement("div", null,
+                React.createElement("div", null, "Econ Cards:"),
+                React.createElement("div", { className: "card-list" }, econItems)));
         }
         var cards = displayDeck.sort(this.cardSort);
         var allCards = cards.map(function (card) {
-            return (React.createElement(cardSettings_1.CardSettings, {"key": card.code, "card": card}));
+            return (React.createElement(cardSettings_1.CardSettings, { key: card.code, card: card }));
         });
-        return (React.createElement("section", {"className": "content"}, React.createElement("section", {"className": "configure"}, React.createElement("h2", null, "Preferred Setup Settings"), React.createElement("div", null, React.createElement("p", null, React.createElement("strong", null, "Require Two Characters:")), React.createElement("input", {"id": "require-one-character", "type": "checkbox", "checked": this.props.settings.requireMoreThanOneCharacter, "onChange": this.toggleRequireMoreThanOneCharacter}), React.createElement("label", {"htmlFor": "require-one-character"}, "Require 2+ Characters. If this is selected, one character setups will be considered poor"), React.createElement("p", null, React.createElement("strong", null, "Require Four Cost Character:")), React.createElement("input", {"id": "require-four-cost-character", "type": "checkbox", "checked": this.props.settings.requireFourCostCharacter, "onChange": this.toggleRequireFourCostCharacter}), React.createElement("label", {"htmlFor": "require-four-cost-character"}, "Require 4 cost character. If this is selected, setups with only characters that cost 3 or less will be considered poor"), React.createElement("p", null, React.createElement("strong", null, "Number of Cards to consider a Poor Setup:")), React.createElement("p", null, React.createElement("input", {"type": "radio", "name": "poorCards", "value": "0", "onChange": this.poorCardsChanged, "checked": this.props.settings.poorCards == 0, "id": "zero-poor"}), React.createElement("label", {"htmlFor": "zero-poor"}, "0 Cards "), React.createElement("input", {"type": "radio", "name": "poorCards", "value": "1", "onChange": this.poorCardsChanged, "checked": this.props.settings.poorCards == 1, "id": "one-poor"}), React.createElement("label", {"htmlFor": "one-poor"}, "1 Card "), React.createElement("input", {"type": "radio", "name": "poorCards", "value": "2", "onChange": this.poorCardsChanged, "checked": this.props.settings.poorCards == 2, "id": "two-poor"}), React.createElement("label", {"htmlFor": "two-poor"}, "2 Cards "), React.createElement("input", {"type": "radio", "name": "poorCards", "value": "3", "onChange": this.poorCardsChanged, "checked": this.props.settings.poorCards == 3, "id": "three-poor"}), React.createElement("label", {"htmlFor": "three-poor"}, "3 Cards "), React.createElement("input", {"type": "radio", "name": "poorCards", "value": "4", "onChange": this.poorCardsChanged, "checked": this.props.settings.poorCards == 4, "id": "four-poor"}), React.createElement("label", {"htmlFor": "four-poor"}, "4 Cards "), React.createElement("input", {"type": "radio", "name": "poorCards", "value": "5", "onChange": this.poorCardsChanged, "checked": this.props.settings.poorCards == 5, "id": "five-poor"}), React.createElement("label", {"htmlFor": "five-poor"}, "5 Cards "), React.createElement("input", {"type": "radio", "name": "poorCards", "value": "6", "onChange": this.poorCardsChanged, "checked": this.props.settings.poorCards == 6, "id": "six-poor"}), React.createElement("label", {"htmlFor": "six-poor"}, "6 Cards ")), React.createElement("p", null, this.props.settings.poorCards, " cards or under will be considered \"poor\""), React.createElement("p", null, React.createElement("strong", null, "Econ:")), React.createElement("div", null, React.createElement("input", {"id": "require-econ", "type": "checkbox", "checked": this.props.settings.requireEcon, "onChange": this.toggleRequireEcon}), React.createElement("label", {"htmlFor": "require-econ"}, "Poor if No Econ")), React.createElement("div", null, React.createElement("input", {"id": "favor-econ", "type": "checkbox", "checked": this.props.settings.favorEcon, "onChange": this.toggleFavorEcon}), React.createElement("label", {"htmlFor": "favor-econ"}, "This will prefer setups that contain econ cards over cards that don't, but will not mark econless hands as poor"))), React.createElement("h2", null, "Mulligan Settings"), React.createElement("div", null, React.createElement("input", {"id": "mulligan-if-poor", "type": "checkbox", "checked": this.props.settings.mulliganOnPoor, "onChange": this.toggleMulliganOnPoor}), React.createElement("label", {"htmlFor": "mulligan-if-poor"}, "Mulligan All Poor Setups")), React.createElement("div", null, React.createElement("input", {"id": "mulligan-without-key", "type": "checkbox", "checked": this.props.settings.mulliganWithoutKey, "onChange": this.toggleMulliganWithoutKey}), React.createElement("label", {"htmlFor": "mulligan-without-key"}, "Mulligan if No Key Card")), React.createElement("div", null, React.createElement("input", {"id": "mulligan-without-econ", "type": "checkbox", "checked": this.props.settings.mulliganWithoutEcon, "onChange": this.toggleMulliganWithoutEcon}), React.createElement("label", {"htmlFor": "mulligan-without-econ"}, "Mulligan if No Econ")), React.createElement("div", null, React.createElement("p", null, React.createElement("strong", null, "Number of Cards to Mulligan:")), React.createElement("p", null, React.createElement("input", {"type": "radio", "name": "mullianCards", "value": "0", "onChange": this.minimumCardsChanged, "checked": this.props.settings.minimumCards == 0, "id": "zero-minimum"}), React.createElement("label", {"htmlFor": "zero-minimum"}, "0 Cards "), React.createElement("input", {"type": "radio", "name": "mullianCards", "value": "1", "onChange": this.minimumCardsChanged, "checked": this.props.settings.minimumCards == 1, "id": "one-minimum"}), React.createElement("label", {"htmlFor": "one-minimum"}, "1 Card "), React.createElement("input", {"type": "radio", "name": "mullianCards", "value": "2", "onChange": this.minimumCardsChanged, "checked": this.props.settings.minimumCards == 2, "id": "two-minimum"}), React.createElement("label", {"htmlFor": "two-minimum"}, "2 Cards "), React.createElement("input", {"type": "radio", "name": "mullianCards", "value": "3", "onChange": this.minimumCardsChanged, "checked": this.props.settings.minimumCards == 3, "id": "three-minimum"}), React.createElement("label", {"htmlFor": "three-minimum"}, "3 Cards "), React.createElement("input", {"type": "radio", "name": "mullianCards", "value": "4", "onChange": this.minimumCardsChanged, "checked": this.props.settings.minimumCards == 4, "id": "four-minimum"}), React.createElement("label", {"htmlFor": "four-minimum"}, "4 Cards "), React.createElement("input", {"type": "radio", "name": "mullianCards", "value": "5", "onChange": this.minimumCardsChanged, "checked": this.props.settings.minimumCards == 5, "id": "five-minimum"}), React.createElement("label", {"htmlFor": "five-minimum"}, "5 Cards "), React.createElement("input", {"type": "radio", "name": "mullianCards", "value": "6", "onChange": this.minimumCardsChanged, "checked": this.props.settings.minimumCards == 6, "id": "six-minimum"}), React.createElement("label", {"htmlFor": "six-minimum"}, "6 Cards ")), React.createElement("p", null, this.props.settings.minimumCards, " cards or under will be mulliganed")), React.createElement("p", null, "The Setup Analyzer will now attempt to mulligan your first draw if it doesn't meet certain criteria. This page provides all the current settings for configuring what setups to prefer and what hands to mulligan. You can configure cards as being ", React.createElement("i", {"className": "fa fa-key fa-fw"}), " Key cards, ", React.createElement("i", {"className": "fa fa-exclamation-triangle fa-fw"}), " Try to Avoid Cards, and ", React.createElement("i", {"className": "fa fa-ban fa-fw"}), "Restricted Cards"), React.createElement("p", null, "Key Cards will be set up as often as possible. As long as you can set up at least 2 total characters, a set up with a key card will be used if available"), React.createElement("p", null, "Try to Avoid Cards will be avoided unless there is nothing else that can be used. For example, if you have only 3 gold worth of cards to set up, and a 5 cost try to avoid card, it will set up the card. By default this includes characters with positive enter play abilities"), React.createElement("p", null, "Restricted cards will never be set up under any circumstances. By default this includes negative attachments"), key, econ, avoided, restricted, React.createElement("div", null, "All Cards:"), React.createElement("div", {"className": "card-list"}, allCards))));
+        return (React.createElement("section", { className: "content" },
+            React.createElement("section", { className: "configure" },
+                React.createElement("h2", null, "Preferred Setup Settings"),
+                React.createElement("div", null,
+                    React.createElement("p", null,
+                        React.createElement("strong", null, "Require Two Characters:")),
+                    React.createElement("input", { id: "require-one-character", type: "checkbox", checked: this.props.settings.requireMoreThanOneCharacter, onChange: this.toggleRequireMoreThanOneCharacter }),
+                    React.createElement("label", { htmlFor: "require-one-character" }, "Require 2+ Characters. If this is selected, one character setups will be considered poor"),
+                    React.createElement("p", null,
+                        React.createElement("strong", null, "Require Four Cost Character:")),
+                    React.createElement("input", { id: "require-four-cost-character", type: "checkbox", checked: this.props.settings.requireFourCostCharacter, onChange: this.toggleRequireFourCostCharacter }),
+                    React.createElement("label", { htmlFor: "require-four-cost-character" }, "Require 4 cost character. If this is selected, setups with only characters that cost 3 or less will be considered poor"),
+                    React.createElement("p", null,
+                        React.createElement("strong", null, "Number of Cards to consider a Poor Setup:")),
+                    React.createElement("p", null,
+                        React.createElement("input", { type: "radio", name: "poorCards", value: "0", onChange: this.poorCardsChanged, checked: this.props.settings.poorCards == 0, id: "zero-poor" }),
+                        React.createElement("label", { htmlFor: "zero-poor" }, "0 Cards "),
+                        React.createElement("input", { type: "radio", name: "poorCards", value: "1", onChange: this.poorCardsChanged, checked: this.props.settings.poorCards == 1, id: "one-poor" }),
+                        React.createElement("label", { htmlFor: "one-poor" }, "1 Card "),
+                        React.createElement("input", { type: "radio", name: "poorCards", value: "2", onChange: this.poorCardsChanged, checked: this.props.settings.poorCards == 2, id: "two-poor" }),
+                        React.createElement("label", { htmlFor: "two-poor" }, "2 Cards "),
+                        React.createElement("input", { type: "radio", name: "poorCards", value: "3", onChange: this.poorCardsChanged, checked: this.props.settings.poorCards == 3, id: "three-poor" }),
+                        React.createElement("label", { htmlFor: "three-poor" }, "3 Cards "),
+                        React.createElement("input", { type: "radio", name: "poorCards", value: "4", onChange: this.poorCardsChanged, checked: this.props.settings.poorCards == 4, id: "four-poor" }),
+                        React.createElement("label", { htmlFor: "four-poor" }, "4 Cards "),
+                        React.createElement("input", { type: "radio", name: "poorCards", value: "5", onChange: this.poorCardsChanged, checked: this.props.settings.poorCards == 5, id: "five-poor" }),
+                        React.createElement("label", { htmlFor: "five-poor" }, "5 Cards "),
+                        React.createElement("input", { type: "radio", name: "poorCards", value: "6", onChange: this.poorCardsChanged, checked: this.props.settings.poorCards == 6, id: "six-poor" }),
+                        React.createElement("label", { htmlFor: "six-poor" }, "6 Cards ")),
+                    React.createElement("p", null,
+                        this.props.settings.poorCards,
+                        " cards or under will be considered \"poor\""),
+                    React.createElement("p", null,
+                        React.createElement("strong", null, "Econ:")),
+                    React.createElement("div", null,
+                        React.createElement("input", { id: "require-econ", type: "checkbox", checked: this.props.settings.requireEcon, onChange: this.toggleRequireEcon }),
+                        React.createElement("label", { htmlFor: "require-econ" }, "Poor if No Econ")),
+                    React.createElement("div", null,
+                        React.createElement("input", { id: "favor-econ", type: "checkbox", checked: this.props.settings.favorEcon, onChange: this.toggleFavorEcon }),
+                        React.createElement("label", { htmlFor: "favor-econ" }, "This will prefer setups that contain econ cards over cards that don't, but will not mark econless hands as poor"))),
+                React.createElement("h2", null, "Mulligan Settings"),
+                React.createElement("div", null,
+                    React.createElement("input", { id: "mulligan-if-poor", type: "checkbox", checked: this.props.settings.mulliganOnPoor, onChange: this.toggleMulliganOnPoor }),
+                    React.createElement("label", { htmlFor: "mulligan-if-poor" }, "Mulligan All Poor Setups")),
+                React.createElement("div", null,
+                    React.createElement("input", { id: "mulligan-without-key", type: "checkbox", checked: this.props.settings.mulliganWithoutKey, onChange: this.toggleMulliganWithoutKey }),
+                    React.createElement("label", { htmlFor: "mulligan-without-key" }, "Mulligan if No Key Card")),
+                React.createElement("div", null,
+                    React.createElement("input", { id: "mulligan-without-econ", type: "checkbox", checked: this.props.settings.mulliganWithoutEcon, onChange: this.toggleMulliganWithoutEcon }),
+                    React.createElement("label", { htmlFor: "mulligan-without-econ" }, "Mulligan if No Econ")),
+                React.createElement("div", null,
+                    React.createElement("p", null,
+                        React.createElement("strong", null, "Number of Cards to Mulligan:")),
+                    React.createElement("p", null,
+                        React.createElement("input", { type: "radio", name: "mullianCards", value: "0", onChange: this.minimumCardsChanged, checked: this.props.settings.minimumCards == 0, id: "zero-minimum" }),
+                        React.createElement("label", { htmlFor: "zero-minimum" }, "0 Cards "),
+                        React.createElement("input", { type: "radio", name: "mullianCards", value: "1", onChange: this.minimumCardsChanged, checked: this.props.settings.minimumCards == 1, id: "one-minimum" }),
+                        React.createElement("label", { htmlFor: "one-minimum" }, "1 Card "),
+                        React.createElement("input", { type: "radio", name: "mullianCards", value: "2", onChange: this.minimumCardsChanged, checked: this.props.settings.minimumCards == 2, id: "two-minimum" }),
+                        React.createElement("label", { htmlFor: "two-minimum" }, "2 Cards "),
+                        React.createElement("input", { type: "radio", name: "mullianCards", value: "3", onChange: this.minimumCardsChanged, checked: this.props.settings.minimumCards == 3, id: "three-minimum" }),
+                        React.createElement("label", { htmlFor: "three-minimum" }, "3 Cards "),
+                        React.createElement("input", { type: "radio", name: "mullianCards", value: "4", onChange: this.minimumCardsChanged, checked: this.props.settings.minimumCards == 4, id: "four-minimum" }),
+                        React.createElement("label", { htmlFor: "four-minimum" }, "4 Cards "),
+                        React.createElement("input", { type: "radio", name: "mullianCards", value: "5", onChange: this.minimumCardsChanged, checked: this.props.settings.minimumCards == 5, id: "five-minimum" }),
+                        React.createElement("label", { htmlFor: "five-minimum" }, "5 Cards "),
+                        React.createElement("input", { type: "radio", name: "mullianCards", value: "6", onChange: this.minimumCardsChanged, checked: this.props.settings.minimumCards == 6, id: "six-minimum" }),
+                        React.createElement("label", { htmlFor: "six-minimum" }, "6 Cards ")),
+                    React.createElement("p", null,
+                        this.props.settings.minimumCards,
+                        " cards or under will be mulliganed")),
+                React.createElement("p", null,
+                    "The Setup Analyzer will now attempt to mulligan your first draw if it doesn't meet certain criteria. This page provides all the current settings for configuring what setups to prefer and what hands to mulligan. You can configure cards as being ",
+                    React.createElement("i", { className: "fa fa-key fa-fw" }),
+                    " Key cards, ",
+                    React.createElement("i", { className: "fa fa-exclamation-triangle fa-fw" }),
+                    " Try to Avoid Cards, and ",
+                    React.createElement("i", { className: "fa fa-ban fa-fw" }),
+                    "Restricted Cards"),
+                React.createElement("p", null, "Key Cards will be set up as often as possible. As long as you can set up at least 2 total characters, a set up with a key card will be used if available"),
+                React.createElement("p", null, "Try to Avoid Cards will be avoided unless there is nothing else that can be used. For example, if you have only 3 gold worth of cards to set up, and a 5 cost try to avoid card, it will set up the card. By default this includes characters with positive enter play abilities"),
+                React.createElement("p", null, "Restricted cards will never be set up under any circumstances. By default this includes negative attachments"),
+                key,
+                econ,
+                avoided,
+                restricted,
+                React.createElement("div", null, "All Cards:"),
+                React.createElement("div", { className: "card-list" }, allCards))));
     };
     return Configure;
-})(React.Component);
+}(React.Component));
 exports.Configure = Configure;
 
 },{"../actions/SetupActionID":2,"../dispatcher/AppDispatcher":16,"./cardSettings":12}],14:[function(require,module,exports){
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
 var SetupExample = (function (_super) {
     __extends(SetupExample, _super);
     function SetupExample(props) {
-        _super.call(this, props);
-        this.state = {
+        var _this = _super.call(this, props) || this;
+        _this.state = {
             shownSetup: 0
         };
+        return _this;
     }
     SetupExample.prototype.onPrevious = function () {
         var index = this.state.shownSetup - 1;
@@ -514,7 +769,8 @@ var SetupExample = (function (_super) {
                 if (_this.props.setups[_this.state.shownSetup].cards.filter(function (p) { return p == pos; }).length > 0) {
                     className += " selected";
                 }
-                return (React.createElement("div", {"key": pos, "className": className}, React.createElement("img", {"alt": card.name, "src": image})));
+                return (React.createElement("div", { key: pos, className: className },
+                    React.createElement("img", { alt: card.name, src: image })));
             });
             var mulligan = null;
             if (this.props.setups[this.state.shownSetup].mulliganed) {
@@ -527,32 +783,56 @@ var SetupExample = (function (_super) {
                     if (_this.props.setups[_this.state.shownSetup].mulliganed.cards.filter(function (p) { return p == pos; }).length > 0) {
                         className += " selected";
                     }
-                    return (React.createElement("div", {"key": pos, "className": className}, React.createElement("img", {"alt": card.name, "src": image})));
+                    return (React.createElement("div", { key: pos, className: className },
+                        React.createElement("img", { alt: card.name, src: image })));
                 });
-                mulligan = (React.createElement("div", null, React.createElement("div", null, "Mulliganed:"), React.createElement("div", {"className": "card-list example mulliganed"}, mulliganedItems)));
+                mulligan = (React.createElement("div", null,
+                    React.createElement("div", null, "Mulliganed:"),
+                    React.createElement("div", { className: "card-list example mulliganed" }, mulliganedItems)));
             }
         }
-        return (React.createElement("section", {"className": "example"}, React.createElement("div", null, this.props.drawDeck.length, " Cards"), React.createElement("div", null, "Examples:", React.createElement("button", {"onClick": this.onPrevious.bind(this)}, "Previous"), " ", React.createElement("button", {"onClick": this.onNext.bind(this)}, "Next")), React.createElement("div", {"className": "card-list example"}, exampleItems), mulligan, React.createElement("p", null, "Does something look wrong? ", React.createElement("a", {"href": "mailto:jason@red5dev.com"}, "Let me know!"))));
+        return (React.createElement("section", { className: "example" },
+            React.createElement("div", null,
+                this.props.drawDeck.length,
+                " Cards"),
+            React.createElement("div", null,
+                "Examples:",
+                React.createElement("button", { onClick: this.onPrevious.bind(this) }, "Previous"),
+                " ",
+                React.createElement("button", { onClick: this.onNext.bind(this) }, "Next")),
+            React.createElement("div", { className: "card-list example" }, exampleItems),
+            mulligan,
+            React.createElement("p", null,
+                "Does something look wrong? ",
+                React.createElement("a", { href: "mailto:jason@red5dev.com" }, "Let me know!"))));
     };
     return SetupExample;
-})(React.Component);
+}(React.Component));
 exports.SetupExample = SetupExample;
 
 },{}],15:[function(require,module,exports){
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
+"use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
 var cardItem_1 = require("../cardItem");
-var ReactHighcharts = require('react-highcharts');
+var ReactHighcharts = require("react-highcharts");
 var SimulationStats = (function (_super) {
     __extends(SimulationStats, _super);
     function SimulationStats(props) {
-        _super.call(this, props);
-        this.state = {
+        var _this = _super.call(this, props) || this;
+        _this.state = {
             shownSetup: 0
         };
+        return _this;
     }
     SimulationStats.prototype.shouldComponentUpdate = function (nextProps, nextState) {
         return nextProps.stats.simulations != this.props.stats.simulations;
@@ -900,7 +1180,7 @@ var SimulationStats = (function (_super) {
         var cardItems = orderedDeck.map(function (card) {
             var code = card.code + i;
             i++;
-            return (React.createElement(cardItem_1.CardItem, {"key": code, "card": card, "simulations": _this.props.stats.simulations}));
+            return (React.createElement(cardItem_1.CardItem, { key: code, card: card, simulations: _this.props.stats.simulations }));
         });
         var options = {};
         var cardUsageData = this.getBaseCardCountConfig();
@@ -939,7 +1219,13 @@ var SimulationStats = (function (_super) {
                 if (i != 1) {
                     plural = "s";
                 }
-                cardsUsed.push(React.createElement("p", {"key": i}, i, " Card", plural, " : ", Math.round(10000 * this.props.stats.cardCounts[i] / this.props.stats.simulations) / 100, "%"));
+                cardsUsed.push(React.createElement("p", { key: i },
+                    i,
+                    " Card",
+                    plural,
+                    " : ",
+                    Math.round(10000 * this.props.stats.cardCounts[i] / this.props.stats.simulations) / 100,
+                    "%"));
             }
         }
         var goldUsed = [];
@@ -949,7 +1235,13 @@ var SimulationStats = (function (_super) {
                 if (i != 1) {
                     plural = "s";
                 }
-                goldUsed.push(React.createElement("p", {"key": i}, i, " Gold", plural, " : ", Math.round(10000 * this.props.stats.goldCounts[i] / this.props.stats.simulations) / 100, "%"));
+                goldUsed.push(React.createElement("p", { key: i },
+                    i,
+                    " Gold",
+                    plural,
+                    " : ",
+                    Math.round(10000 * this.props.stats.goldCounts[i] / this.props.stats.simulations) / 100,
+                    "%"));
             }
         }
         var iconGraph = this.iconStatsGraph();
@@ -975,30 +1267,103 @@ var SimulationStats = (function (_super) {
         var sixGamePoorSetupRate = 1 - Math.pow(1 - poorSetupRate, 6);
         var eightGamePoorSetupRate = 1 - Math.pow(1 - poorSetupRate, 8);
         var tenGamePoorSetupRate = 1 - Math.pow(1 - poorSetupRate, 10);
-        var charts = (React.createElement("section", {"className": "charts"}, React.createElement("p", null, "Simulating...")));
+        var charts = (React.createElement("section", { className: "charts" },
+            React.createElement("p", null, "Simulating...")));
         if (this.props.stats.simulations == 5000) {
-            charts = (React.createElement("section", {"className": "charts"}, React.createElement(ReactHighcharts, {"config": cardUsageData}), React.createElement("div", {"className": "stat-overview"}, React.createElement("div", {"className": "quick-stat"}, React.createElement("h2", null, Math.round(1000 * fourGamePoorSetupRate) / 10, "%"), React.createElement("span", null, "Chance of having a poor setup in 4 games")), React.createElement("div", {"className": "quick-stat"}, React.createElement("h2", null, Math.round(1000 * sixGamePoorSetupRate) / 10, "%"), React.createElement("span", null, "Chance of having a poor setup in 6 games")), React.createElement("div", {"className": "quick-stat"}, React.createElement("h2", null, Math.round(1000 * eightGamePoorSetupRate) / 10, "%"), React.createElement("span", null, "Chance of having a poor setup in 8 games")), React.createElement("div", {"className": "quick-stat"}, React.createElement("h2", null, Math.round(1000 * tenGamePoorSetupRate) / 10, "%"), React.createElement("span", null, "Chance of having a poor setup in 10 games"))), React.createElement("hr", null), React.createElement(ReactHighcharts, {"config": distinctCharData}), React.createElement("hr", null), React.createElement(ReactHighcharts, {"config": goldUsageData}), React.createElement("hr", null), React.createElement(ReactHighcharts, {"config": econCardsData}), React.createElement("hr", null), React.createElement(ReactHighcharts, {"config": iconGraph}), React.createElement("hr", null), React.createElement(ReactHighcharts, {"config": iconStrGraph})));
+            charts = (React.createElement("section", { className: "charts" },
+                React.createElement(ReactHighcharts, { config: cardUsageData }),
+                React.createElement("div", { className: "stat-overview" },
+                    React.createElement("div", { className: "quick-stat" },
+                        React.createElement("h2", null,
+                            Math.round(1000 * fourGamePoorSetupRate) / 10,
+                            "%"),
+                        React.createElement("span", null, "Chance of having a poor setup in 4 games")),
+                    React.createElement("div", { className: "quick-stat" },
+                        React.createElement("h2", null,
+                            Math.round(1000 * sixGamePoorSetupRate) / 10,
+                            "%"),
+                        React.createElement("span", null, "Chance of having a poor setup in 6 games")),
+                    React.createElement("div", { className: "quick-stat" },
+                        React.createElement("h2", null,
+                            Math.round(1000 * eightGamePoorSetupRate) / 10,
+                            "%"),
+                        React.createElement("span", null, "Chance of having a poor setup in 8 games")),
+                    React.createElement("div", { className: "quick-stat" },
+                        React.createElement("h2", null,
+                            Math.round(1000 * tenGamePoorSetupRate) / 10,
+                            "%"),
+                        React.createElement("span", null, "Chance of having a poor setup in 10 games"))),
+                React.createElement("hr", null),
+                React.createElement(ReactHighcharts, { config: distinctCharData }),
+                React.createElement("hr", null),
+                React.createElement(ReactHighcharts, { config: goldUsageData }),
+                React.createElement("hr", null),
+                React.createElement(ReactHighcharts, { config: econCardsData }),
+                React.createElement("hr", null),
+                React.createElement(ReactHighcharts, { config: iconGraph }),
+                React.createElement("hr", null),
+                React.createElement(ReactHighcharts, { config: iconStrGraph })));
         }
         var mulligans = null;
         if (this.props.stats.mulligans > 0) {
-            mulligans = (React.createElement("p", null, React.createElement("strong", null, "*** Mulligans In Use ***")));
+            mulligans = (React.createElement("p", null,
+                React.createElement("strong", null, "*** Mulligans In Use ***")));
         }
-        return (React.createElement("div", null, React.createElement("section", {"className": "stats"}, React.createElement("section", {"className": "info"}, mulligans, React.createElement("p", null, "Runs: ", this.props.stats.simulations), React.createElement("p", null, "Mulligans: ", this.props.stats.mulligans, " (", Math.round(this.props.stats.mulligans * 1000 / this.props.stats.simulations) / 10, "%)"), React.createElement("p", null, "Avg Gold: ", Math.round(10000 * this.props.stats.goldSetup / this.props.stats.simulations) / 10000), React.createElement("p", null, "Avg Cards: ", Math.round(10000 * this.props.stats.cardsSetup / this.props.stats.simulations) / 10000), React.createElement("p", null, React.createElement("span", {"className": "tooltip hint--top", "data-hint": "Poor setup definition can be configured in Configure tab"}, "Poor Setups:"), " ", Math.round(poorSetupRate * 1000) / 10, "%"), React.createElement("p", null, React.createElement("span", {"className": "tooltip hint--top", "data-hint": "Percentage of Setups with 5 or more cards set up and over 1 character"}, "Great Setups:"), " ", Math.round(100 * this.props.stats.greatSetups / this.props.stats.simulations), "%"), React.createElement("p", null, React.createElement("strong", null, "Cards Setup:")), cardsUsed, React.createElement("p", null, React.createElement("strong", null, "Gold Used:")), goldUsed), charts), React.createElement("section", {"className": "deck"}, React.createElement("ul", {"className": "card-list"}, cardItems))));
+        return (React.createElement("div", null,
+            React.createElement("section", { className: "stats" },
+                React.createElement("section", { className: "info" },
+                    mulligans,
+                    React.createElement("p", null,
+                        "Runs: ",
+                        this.props.stats.simulations),
+                    React.createElement("p", null,
+                        "Mulligans: ",
+                        this.props.stats.mulligans,
+                        " (",
+                        Math.round(this.props.stats.mulligans * 1000 / this.props.stats.simulations) / 10,
+                        "%)"),
+                    React.createElement("p", null,
+                        "Avg Gold: ",
+                        Math.round(10000 * this.props.stats.goldSetup / this.props.stats.simulations) / 10000),
+                    React.createElement("p", null,
+                        "Avg Cards: ",
+                        Math.round(10000 * this.props.stats.cardsSetup / this.props.stats.simulations) / 10000),
+                    React.createElement("p", null,
+                        React.createElement("span", { className: "tooltip hint--top", "data-hint": "Poor setup definition can be configured in Configure tab" }, "Poor Setups:"),
+                        " ",
+                        Math.round(poorSetupRate * 1000) / 10,
+                        "%"),
+                    React.createElement("p", null,
+                        React.createElement("span", { className: "tooltip hint--top", "data-hint": "Percentage of Setups with 5 or more cards set up and over 1 character" }, "Great Setups:"),
+                        " ",
+                        Math.round(100 * this.props.stats.greatSetups / this.props.stats.simulations),
+                        "%"),
+                    React.createElement("p", null,
+                        React.createElement("strong", null, "Cards Setup:")),
+                    cardsUsed,
+                    React.createElement("p", null,
+                        React.createElement("strong", null, "Gold Used:")),
+                    goldUsed),
+                charts),
+            React.createElement("section", { className: "deck" },
+                React.createElement("ul", { className: "card-list" }, cardItems))));
     };
     return SimulationStats;
-})(React.Component);
+}(React.Component));
 exports.SimulationStats = SimulationStats;
 
 },{"../cardItem":8,"react-highcharts":24}],16:[function(require,module,exports){
-var flux = require('flux');
+"use strict";
+var flux = require("flux");
 var Dispatcher = new flux.Dispatcher();
 module.exports = Dispatcher;
 
 },{"flux":21}],17:[function(require,module,exports){
 arguments[4][16][0].apply(exports,arguments)
 },{"dup":16,"flux":21}],18:[function(require,module,exports){
-var AppDispatcher = require('../dispatcher/AppDispatcher');
-var DeckActionID = require('../actions/DeckActionID');
+"use strict";
+var AppDispatcher = require("../dispatcher/AppDispatcher");
+var DeckActionID = require("../actions/DeckActionID");
 var DeckStoreStatic = (function () {
     function DeckStoreStatic() {
         this.drawDeck = [];
@@ -1006,7 +1371,7 @@ var DeckStoreStatic = (function () {
         this.onChanges = [];
         this.allCards = {};
         var self = this;
-        var req = $.get("js/data/cards.json", function (result) {
+        var req = $.get("dist/cards.json", function (result) {
             result.forEach(function (cardData) {
                 self.allCards[cardData['pack_name'] + " - " + cardData['name']] = cardData;
             });
@@ -1109,6 +1474,9 @@ var DeckStoreStatic = (function () {
     DeckStoreStatic.prototype.addIncomeBonus = function (card) {
         var incomeRegex = new RegExp('\\+([0-9]) Income', 'g');
         var incomeMatches = incomeRegex.exec(card.text);
+        if ('is_econ' in card) {
+            return;
+        }
         card.income = 0;
         card.is_econ = false;
         if (incomeMatches) {
@@ -1162,7 +1530,7 @@ var DeckStoreStatic = (function () {
         }
     };
     return DeckStoreStatic;
-})();
+}());
 var DeckStore = new DeckStoreStatic();
 AppDispatcher.register(function (payload) {
     if (payload.actionType == DeckActionID.LOAD_DECK) {
@@ -1184,9 +1552,10 @@ AppDispatcher.register(function (payload) {
 module.exports = DeckStore;
 
 },{"../actions/DeckActionID":1,"../dispatcher/AppDispatcher":16}],19:[function(require,module,exports){
-var AppDispatcher = require('../dispatcher/AppDispatcher');
-var SetupActionID = require('../actions/setupActionID');
-var DeckStore = require('./deckStore');
+"use strict";
+var AppDispatcher = require("../dispatcher/AppDispatcher");
+var SetupActionID = require("../actions/setupActionID");
+var DeckStore = require("./deckStore");
 var SetupStoreStatic = (function () {
     function SetupStoreStatic() {
         var self = this;
@@ -1545,7 +1914,7 @@ var SetupStoreStatic = (function () {
         this.inform();
     };
     return SetupStoreStatic;
-})();
+}());
 var SetupStore = new SetupStoreStatic();
 AppDispatcher.register(function (payload) {
     if (payload.actionType == SetupActionID.PERFORM_SIMULATIONS) {
@@ -1881,14 +2250,103 @@ module.exports = Dispatcher;
 }).call(this,require('_process'))
 },{"_process":23,"fbjs/lib/invariant":20}],23:[function(require,module,exports){
 // shim for using process in browser
-
 var process = module.exports = {};
+
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+(function () {
+    try {
+        if (typeof setTimeout === 'function') {
+            cachedSetTimeout = setTimeout;
+        } else {
+            cachedSetTimeout = defaultSetTimout;
+        }
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') {
+            cachedClearTimeout = clearTimeout;
+        } else {
+            cachedClearTimeout = defaultClearTimeout;
+        }
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+} ())
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+
+
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+
+
+
+}
 var queue = [];
 var draining = false;
 var currentQueue;
 var queueIndex = -1;
 
 function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
     draining = false;
     if (currentQueue.length) {
         queue = currentQueue.concat(queue);
@@ -1904,7 +2362,7 @@ function drainQueue() {
     if (draining) {
         return;
     }
-    var timeout = setTimeout(cleanUpNextTick);
+    var timeout = runTimeout(cleanUpNextTick);
     draining = true;
 
     var len = queue.length;
@@ -1921,7 +2379,7 @@ function drainQueue() {
     }
     currentQueue = null;
     draining = false;
-    clearTimeout(timeout);
+    runClearTimeout(timeout);
 }
 
 process.nextTick = function (fun) {
@@ -1933,7 +2391,7 @@ process.nextTick = function (fun) {
     }
     queue.push(new Item(fun, args));
     if (queue.length === 1 && !draining) {
-        setTimeout(drainQueue, 0);
+        runTimeout(drainQueue);
     }
 };
 
@@ -1961,6 +2419,10 @@ process.off = noop;
 process.removeListener = noop;
 process.removeAllListeners = noop;
 process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
 
 process.binding = function (name) {
     throw new Error('process.binding is not supported');
@@ -5423,7 +5885,7 @@ var LinkedValueUtils = {
   checkPropTypes: function (tagName, props, owner) {
     for (var propName in propTypes) {
       if (propTypes.hasOwnProperty(propName)) {
-        var error = propTypes[propName](props, propName, tagName, ReactPropTypeLocations.prop);
+        var error = propTypes[propName](props, propName, tagName, ReactPropTypeLocations.prop, null, 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED');
       }
       if (error instanceof Error && !(error.message in loggedTypeFailures)) {
         // Only monitor this failure once because there tends to be a lot of the
@@ -7737,7 +8199,7 @@ var ReactCompositeComponentMixin = {
           // This is intentionally an invariant that gets caught. It's the same
           // behavior as without this statement except with a better message.
           !(typeof propTypes[propName] === 'function') ? process.env.NODE_ENV !== 'production' ? invariant(false, '%s: %s type `%s` is invalid; it must be a function, usually ' + 'from React.PropTypes.', componentName || 'React class', ReactPropTypeLocationNames[location], propName) : invariant(false) : undefined;
-          error = propTypes[propName](props, propName, componentName, location);
+          error = propTypes[propName](props, propName, componentName, location, null, 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED');
         } catch (ex) {
           error = ex;
         }
@@ -11455,7 +11917,7 @@ function checkPropTypes(componentName, propTypes, props, location) {
         // This is intentionally an invariant that gets caught. It's the same
         // behavior as without this statement except with a better message.
         !(typeof propTypes[propName] === 'function') ? process.env.NODE_ENV !== 'production' ? invariant(false, '%s: %s type `%s` is invalid; it must be a function, usually from ' + 'React.PropTypes.', componentName || 'React class', ReactPropTypeLocationNames[location], propName) : invariant(false) : undefined;
-        error = propTypes[propName](props, propName, componentName, location);
+        error = propTypes[propName](props, propName, componentName, location, null, 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED');
       } catch (ex) {
         error = ex;
       }
@@ -11588,6 +12050,10 @@ var ReactEmptyComponentInjection = {
   }
 };
 
+function registerNullComponentID() {
+  ReactEmptyComponentRegistry.registerNullComponentID(this._rootNodeID);
+}
+
 var ReactEmptyComponent = function (instantiate) {
   this._currentElement = null;
   this._rootNodeID = null;
@@ -11596,7 +12062,7 @@ var ReactEmptyComponent = function (instantiate) {
 assign(ReactEmptyComponent.prototype, {
   construct: function (element) {},
   mountComponent: function (rootID, transaction, context) {
-    ReactEmptyComponentRegistry.registerNullComponentID(rootID);
+    transaction.getReactMountReady().enqueue(registerNullComponentID, this);
     this._rootNodeID = rootID;
     return ReactReconciler.mountComponent(this._renderedComponent, rootID, transaction, context);
   },
@@ -14618,7 +15084,7 @@ function createArrayOfTypeChecker(typeChecker) {
       return new Error('Invalid ' + locationName + ' `' + propFullName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an array.'));
     }
     for (var i = 0; i < propValue.length; i++) {
-      var error = typeChecker(propValue, i, componentName, location, propFullName + '[' + i + ']');
+      var error = typeChecker(propValue, i, componentName, location, propFullName + '[' + i + ']', 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED');
       if (error instanceof Error) {
         return error;
       }
@@ -14684,7 +15150,7 @@ function createObjectOfTypeChecker(typeChecker) {
     }
     for (var key in propValue) {
       if (propValue.hasOwnProperty(key)) {
-        var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key);
+        var error = typeChecker(propValue, key, componentName, location, propFullName + '.' + key, 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED');
         if (error instanceof Error) {
           return error;
         }
@@ -14705,7 +15171,7 @@ function createUnionTypeChecker(arrayOfTypeCheckers) {
   function validate(props, propName, componentName, location, propFullName) {
     for (var i = 0; i < arrayOfTypeCheckers.length; i++) {
       var checker = arrayOfTypeCheckers[i];
-      if (checker(props, propName, componentName, location, propFullName) == null) {
+      if (checker(props, propName, componentName, location, propFullName, 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED') == null) {
         return null;
       }
     }
@@ -14740,7 +15206,7 @@ function createShapeTypeChecker(shapeTypes) {
       if (!checker) {
         continue;
       }
-      var error = checker(propValue, key, componentName, location, propFullName + '.' + key);
+      var error = checker(propValue, key, componentName, location, propFullName + '.' + key, 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED');
       if (error) {
         return error;
       }
@@ -15902,7 +16368,7 @@ module.exports = ReactUpdates;
 
 'use strict';
 
-module.exports = '0.14.7';
+module.exports = '0.14.9';
 },{}],109:[function(require,module,exports){
 /**
  * Copyright 2013-2015, Facebook, Inc.
