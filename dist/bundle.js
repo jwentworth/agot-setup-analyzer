@@ -1468,6 +1468,9 @@ var DeckStoreStatic = (function () {
         this.inform();
     };
     DeckStoreStatic.prototype.addLimitedStatus = function (card) {
+        if ('is_limited' in card) {
+            return;
+        }
         var limitedRegex = new RegExp('<abbr>Limited<\\/abbr>.*', 'g');
         card.is_limited = limitedRegex.test(card.text);
     };
