@@ -82,6 +82,11 @@ class DeckStoreStatic implements IDeckStore {
 
 
   private addLimitedStatus(card:ICard){
+    if ('is_limited' in card){
+      //data is manually set, don't determine it now
+      return;
+    }
+    
     var limitedRegex = new RegExp('<abbr>Limited<\\/abbr>.*', 'g');
     card.is_limited = limitedRegex.test(card.text);
   }

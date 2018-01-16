@@ -352,6 +352,7 @@
         "is_military": false,
         "is_power": false,
         "is_unique": false,
+        "is_limited": true,
         "name": "Slaver's Bay Port",
         "octgn_id": "4e7c3e4c-e705-43ca-a562-d38e848c6e21",
         "pack_code": "AMAF",

@@ -194,6 +194,7 @@
         "is_military": false,
         "is_power": false,
         "is_unique": false,
+        "is_limited": true,
         "name": "Northern Encampment",
         "octgn_id": "52a2eb3e-f6d3-4c17-a6db-efeddf2d9355",
         "pack_code": "OR",

@@ -90,6 +90,7 @@
         "is_military": false,
         "is_power": false,
         "is_unique": false,
+        "is_limited": true,
         "name": "Arbor Vineyard",
         "octgn_id": "5e5fb7b0-62fc-41ee-8ae8-781c1df80e9b",
         "pack_code": "TRW",

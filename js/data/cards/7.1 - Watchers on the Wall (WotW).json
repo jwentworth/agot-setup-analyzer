@@ -436,6 +436,7 @@
         "is_military": false,
         "is_power": false,
         "is_unique": true,
+        "is_limited": true,
         "name": "The New Gift",
         "octgn_id": "e1836738-748e-4a25-bab6-ca7f2926d1e1",
         "pack_code": "WotW",

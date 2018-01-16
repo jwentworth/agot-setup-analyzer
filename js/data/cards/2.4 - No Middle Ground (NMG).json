@@ -94,6 +94,7 @@
         "is_military": false,
         "is_power": false,
         "is_unique": true,
+        "is_limited": true,
         "name": "The Arbor",
         "octgn_id": "c3ba26a2-a3d7-47fc-b3c8-4a01b9f456e5",
         "pack_code": "NMG",
