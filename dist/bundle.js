@@ -8,6 +8,7 @@ var DeckActionID = (function () {
     DeckActionID.MARK_AVOID_CARD = "DECK.MARK_AVOID_CARD";
     DeckActionID.MARK_NEVER_CARD = "DECK.MARK_NEVER_CARD";
     DeckActionID.MARK_ECON = "DECK.MARK_ECON";
+    DeckActionID.MARK_SETUP_LOCKED = "DECK.MARK_SETUP_LOCKED";
     return DeckActionID;
 }());
 module.exports = DeckActionID;
@@ -446,6 +447,12 @@ var CardSettings = (function (_super) {
             data: this.props.card.code
         });
     };
+    CardSettings.prototype.onSetupLock = function () {
+        AppDispatcher.dispatch({
+            actionType: DeckActionID.MARK_SETUP_LOCKED,
+            data: this.props.card.code
+        });
+    };
     CardSettings.prototype.render = function () {
         var card = this.props.card;
         var image = "http://thronesdb.com/" + card.imagesrc;
@@ -454,14 +461,22 @@ var CardSettings = (function (_super) {
         if (card.is_key_card) {
             className += " key-card";
         }
-        else if (card.is_avoided) {
+        if (card.is_avoided) {
             className += " avoided-card";
         }
-        else if (card.is_restricted) {
+        if (card.never_setup) {
             className += " restricted-card";
         }
-        else if (card.is_econ) {
+        if (card.is_econ) {
             className += " econ-card";
+        }
+        if (card.is_setup_locked) {
+            className += " setup-locked";
+        }
+        var lockButton = (React.createElement("button", { className: "setup-lock-button", onClick: this.onSetupLock.bind(this) },
+            React.createElement("i", { className: "fa fa-lock fa-fw" })));
+        if (card.cost > 3 || card.type_code != 'location' || !card.is_unique || card.is_limited) {
+            lockButton = null;
         }
         if (card.type_code == 'character'
             || card.type_code == 'attachment'
@@ -474,7 +489,8 @@ var CardSettings = (function (_super) {
                 React.createElement("button", { className: "avoid-button", onClick: this.onMarkAvoided.bind(this) },
                     React.createElement("i", { className: "fa fa-exclamation-triangle fa-fw" })),
                 React.createElement("button", { className: "restricted-button", onClick: this.onMarkRestricted.bind(this) },
-                    React.createElement("i", { className: "fa fa-ban fa-fw" }))));
+                    React.createElement("i", { className: "fa fa-ban fa-fw" })),
+                lockButton));
         }
         else {
             controls = (React.createElement("div", { className: "controls" },
@@ -598,7 +614,7 @@ var Configure = (function (_super) {
                 React.createElement("div", null, "Key cards:"),
                 React.createElement("div", { className: "card-list" }, keyItems)));
         }
-        var restrictedCards = displayDeck.filter(function (card) { return card.is_restricted; }).sort(this.cardSort);
+        var restrictedCards = displayDeck.filter(function (card) { return card.never_setup; }).sort(this.cardSort);
         var restrictedItems = restrictedCards.map(function (card) {
             i++;
             return (React.createElement(cardSettings_1.CardSettings, { key: card.code, card: card }));
@@ -1400,21 +1416,21 @@ var DeckStoreStatic = (function () {
         var card = this.getCard(code);
         card.is_key_card = !card.is_key_card;
         card.is_avoided = false;
-        card.is_restricted = false;
+        card.never_setup = false;
         this.inform();
     };
     DeckStoreStatic.prototype.markAvoidedCard = function (code) {
         var card = this.getCard(code);
         card.is_key_card = false;
         card.is_avoided = !card.is_avoided;
-        card.is_restricted = false;
+        card.never_setup = false;
         this.inform();
     };
     DeckStoreStatic.prototype.markRestrictedCard = function (code) {
         var card = this.getCard(code);
         card.is_key_card = false;
         card.is_avoided = false;
-        card.is_restricted = !card.is_restricted;
+        card.never_setup = !card.never_setup;
         this.inform();
     };
     DeckStoreStatic.prototype.markEcon = function (code) {
@@ -1422,11 +1438,21 @@ var DeckStoreStatic = (function () {
         card.is_econ = !card.is_econ;
         this.inform();
     };
+    DeckStoreStatic.prototype.markSetupLock = function (code) {
+        var card = this.getCard(code);
+        if (card.cost > 3 || card.type_code != 'location' || !card.is_unique || card.is_limited) {
+            return;
+        }
+        this.getDisplayDeck().forEach(function (c) {
+            c.is_setup_locked = false;
+        });
+        card.is_setup_locked = !card.is_setup_locked;
+        this.inform();
+    };
     DeckStoreStatic.prototype.loadDeck = function (text) {
         var regexp = new RegExp('([0-9])x[ ]+([^(\\n]+)(\\([^)\\n]+\\))?', 'g');
         this.drawDeck = [];
         this.displayDeck = [];
-        var neverSetup = ['02006', '02034', '01035', '02052', '02055'];
         var cardToAdd = regexp.exec(text);
         while (cardToAdd) {
             var cardCount = cardToAdd[1];
@@ -1447,10 +1473,6 @@ var DeckStoreStatic = (function () {
                 card.setup_count = 0;
                 card.is_key_card = false;
                 card.is_avoided = false;
-                card.is_restricted = false;
-                if (neverSetup.filter(function (c) { return c == card.code; }).length > 0) {
-                    card.is_restricted = true;
-                }
                 this.addLimitedStatus(card);
                 this.addIncomeBonus(card);
                 this.addMarshalEffects(card);
@@ -1551,6 +1573,9 @@ AppDispatcher.register(function (payload) {
     else if (payload.actionType == DeckActionID.MARK_ECON) {
         DeckStore.markEcon(payload.data);
     }
+    else if (payload.actionType == DeckActionID.MARK_SETUP_LOCKED) {
+        DeckStore.markSetupLock(payload.data);
+    }
 });
 module.exports = DeckStore;
 
@@ -1563,7 +1588,6 @@ var SetupStoreStatic = (function () {
     function SetupStoreStatic() {
         var self = this;
         this.deck = DeckStore;
-        this.neverSetupCards = ['02006', '02034', '01035', '03025', '02088', '02102', '02116', '03021', '02102'];
         this.exampleSetup = { draw: [] };
         this.onChanges = [];
         this.settings = {
@@ -1723,7 +1747,7 @@ var SetupStoreStatic = (function () {
         if (setup.limitedUsed && card.is_limited) {
             return this.setUp(setup, remainingCards);
         }
-        if (card.cost + setup.currentCost <= 8) {
+        if (card.cost + setup.currentCost <= setup.maxCost) {
             var cardNotUsedSetup = $.extend(true, {}, setup);
             if (card.is_limited) {
                 setup.limitedUsed = true;
@@ -1758,30 +1782,14 @@ var SetupStoreStatic = (function () {
         return this.setUp(setup, remainingCards);
     };
     SetupStoreStatic.prototype.runSetup = function (mulligan, previousSetup) {
-        var _this = this;
         if (previousSetup === void 0) { previousSetup = null; }
         if (previousSetup && !mulligan) {
             this.stats.mulligans++;
             this.updateStats(this.noMulliganStats, previousSetup);
         }
-        var drawDeck = this.deck.getDrawDeck();
-        var deckSize = drawDeck.length;
-        var draw = [];
-        while (draw.length < 7) {
-            var pos = Math.floor((Math.random() * deckSize));
-            if (draw.filter(function (c) { return c == pos; }).length > 0) {
-                continue;
-            }
-            draw.push(pos);
-        }
-        var filteredDraw = draw.filter(function (d) {
-            var card = drawDeck[d];
-            return (card.type_code == 'character'
-                || card.type_code == 'location'
-                || card.type_code == 'attachment') && !card.is_restricted && _this.neverSetupCards.indexOf(card.code) == -1;
-        });
-        var possibleSetup = this.setUp({
+        var setup = {
             currentCost: 0,
+            maxCost: 8,
             limitedUsed: false,
             distinctCharacters: 0,
             hasFourCostCharacter: 0,
@@ -1799,7 +1807,35 @@ var SetupStoreStatic = (function () {
             intrigueStrength: 0,
             powerStrength: 0,
             econCards: 0
-        }, filteredDraw);
+        };
+        var drawDeck = this.deck.getDrawDeck();
+        var deckSize = drawDeck.length;
+        var draw = [];
+        var fixedPos = null;
+        var drawSize = 7;
+        drawDeck.filter(function (c) { return c.is_setup_locked == true; }).forEach(function (c) {
+            fixedPos = drawDeck.indexOf(c);
+            setup.cards.push(fixedPos);
+            setup.maxCost = 4 + c.cost;
+            setup.currentCost += c.cost;
+            setup.income += c.income;
+            draw.push(fixedPos);
+            drawSize = 8;
+        });
+        while (draw.length < drawSize) {
+            var pos = Math.floor((Math.random() * deckSize));
+            if (draw.filter(function (c) { return c == pos; }).length > 0) {
+                continue;
+            }
+            draw.push(pos);
+        }
+        var filteredDraw = draw.filter(function (d) {
+            var card = drawDeck[d];
+            return (card.type_code == 'character'
+                || card.type_code == 'location'
+                || card.type_code == 'attachment') && !card.never_setup && !card.is_setup_locked;
+        });
+        var possibleSetup = this.setUp(setup, filteredDraw);
         var bestSetup = possibleSetup[0];
         possibleSetup.forEach(function (setup) {
             if (setup.score > bestSetup.score) {
