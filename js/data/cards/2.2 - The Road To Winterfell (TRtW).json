@@ -349,6 +349,7 @@
         "is_military": false,
         "is_power": false,
         "is_unique": true,
+        "never_setup": true,
         "name": "Crown of Gold",
         "octgn_id": "b52c7e34-d951-45e5-b296-ade69192855c",
         "pack_code": "TRtW",

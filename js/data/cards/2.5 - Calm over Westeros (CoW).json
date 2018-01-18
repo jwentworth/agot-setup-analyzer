@@ -193,6 +193,7 @@
         "is_military": false,
         "is_power": false,
         "is_unique": false,
+        "never_setup": true,
         "name": "Stinking Drunk",
         "octgn_id": "495f1553-c28b-49a7-b1d6-9cace43d9d2a",
         "pack_code": "CoW",

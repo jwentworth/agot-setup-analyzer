@@ -20,13 +20,14 @@ interface ICard {
   is_intrigue : boolean;
   is_power : boolean;
   is_limited : boolean;
+  is_setup_locked : boolean;
   setup_count : number;
   enter_play_effect : boolean;
   income : number;
   attachmentRestriction : Array<string>;
   is_key_card : boolean;
   is_avoided : boolean;
-  is_restricted : boolean;
+  never_setup : boolean;
   is_econ : boolean;
 }
 

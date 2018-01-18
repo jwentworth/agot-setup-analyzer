@@ -247,7 +247,8 @@ button{
 .card-list .avoided-card .controls button.avoid-button,
 .card-list .key-card .controls button.key-button,
 .card-list .econ-card .controls button.income-button,
-.card-list .restricted-card .controls button.restricted-button{
+.card-list .restricted-card .controls button.restricted-button,
+.card-list .setup-locked .controls button.setup-lock-button{
 	opacity:1;
 }
 

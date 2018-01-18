@@ -948,6 +948,7 @@
         "is_military": false,
         "is_power": false,
         "is_unique": false,
+        "never_setup": true,
         "name": "Milk of the Poppy",
         "octgn_id": "a8bebc54-d01c-424d-8839-460ec09b733f",
         "pack_code": "Core",

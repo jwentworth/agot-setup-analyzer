@@ -306,6 +306,7 @@
       "is_loyal": true,
       "is_military": false,
       "is_intrigue": false,
+      "never_setup": true,
       "is_power": false,
       "octgn_id": "8399961c-0635-4767-a2b8-242b4f371f13",
       "url": "http:\/\/thronesdb.com\/card\/08009",

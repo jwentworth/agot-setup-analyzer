@@ -63,7 +63,7 @@ class DeckStoreStatic implements IDeckStore {
     var card = this.getCard(code);
     card.is_key_card = !card.is_key_card;
     card.is_avoided = false;
-    card.is_restricted = false;
+    card.never_setup = false;
 
     this.inform();
   }
@@ -72,7 +72,7 @@ class DeckStoreStatic implements IDeckStore {
     var card = this.getCard(code);
     card.is_key_card = false;
     card.is_avoided = !card.is_avoided;
-    card.is_restricted = false;
+    card.never_setup = false;
 
     this.inform();
   }
@@ -81,7 +81,7 @@ class DeckStoreStatic implements IDeckStore {
     var card = this.getCard(code);
     card.is_key_card = false;
     card.is_avoided = false;
-    card.is_restricted = !card.is_restricted;
+    card.never_setup = !card.never_setup;
 
     this.inform();
   }
@@ -93,14 +93,30 @@ class DeckStoreStatic implements IDeckStore {
     this.inform();
   }
 
+  public markSetupLock(code){
+    var card = this.getCard(code);
+
+    // this if for House of Red Door exclusively now
+
+    if (card.cost > 3 || card.type_code != 'location' || !card.is_unique || card.is_limited){
+      return;
+    }
+
+    this.getDisplayDeck().forEach(function(c){
+      c.is_setup_locked = false;
+    })
+
+    card.is_setup_locked = !card.is_setup_locked;
+
+    this.inform();
+  }
+
   public loadDeck(text : string) {
     //var regexp = new RegExp('([0-9])x ([^(]+) \\(([^)]+)?\\)', 'g');
     var regexp = new RegExp('([0-9])x[ ]+([^(\\n]+)(\\([^)\\n]+\\))?', 'g')
 
     this.drawDeck = [];
     this.displayDeck = [];
-
-    var neverSetup = ['02006', '02034', '01035', '02052', '02055'];
 
       var cardToAdd = regexp.exec(text);
 
@@ -131,11 +147,6 @@ class DeckStoreStatic implements IDeckStore {
 
           card.is_key_card = false;
           card.is_avoided = false;
-          card.is_restricted = false;
-
-          if (neverSetup.filter(c => c == card.code).length > 0){
-            card.is_restricted = true;
-          }
 
           this.addLimitedStatus(card);
           this.addIncomeBonus(card);
@@ -249,6 +260,8 @@ AppDispatcher.register(function(payload:IActionPayload){
     DeckStore.markRestrictedCard(payload.data);
   } else if (payload.actionType == DeckActionID.MARK_ECON){
     DeckStore.markEcon(payload.data);
+  } else if (payload.actionType == DeckActionID.MARK_SETUP_LOCKED){
+    DeckStore.markSetupLock(payload.data);
   }
 });
 

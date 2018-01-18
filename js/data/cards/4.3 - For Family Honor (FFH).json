@@ -198,6 +198,7 @@
         "is_military": false,
         "is_power": false,
         "is_unique": false,
+        "never_setup": true,
         "name": "Visited by Shadows",
         "octgn_id": "3d6213d1-8e58-427c-87cd-2e7fb5eb3668",
         "pack_code": "FFH",

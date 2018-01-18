@@ -247,6 +247,7 @@
         "is_military": false,
         "is_power": false,
         "is_unique": false,
+        "never_setup": true,
         "name": "Fever Dreams",
         "octgn_id": "6a45acce-c471-4761-8791-794f5e0a3eae",
         "pack_code": "TFoA",

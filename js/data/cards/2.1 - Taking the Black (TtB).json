@@ -141,6 +141,7 @@
         "is_military": false,
         "is_power": false,
         "is_unique": false,
+        "never_setup": false,
         "name": "Pleasure Barge",
         "octgn_id": "8f2b58df-649e-4793-bd4c-bbf701cd57c5",
         "pack_code": "TtB",

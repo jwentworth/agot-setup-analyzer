@@ -176,7 +176,7 @@ class Configure extends React.Component<IConfigureProps, IConfigureState> {
       );
     }
 
-    var restrictedCards = displayDeck.filter((card) => card.is_restricted).sort(this.cardSort);
+    var restrictedCards = displayDeck.filter((card) => card.never_setup).sort(this.cardSort);
     var restrictedItems = restrictedCards.map((card) => {
       i++;
       return (

@@ -28,14 +28,12 @@ class SetupStoreStatic implements ISetupStore {
   public settings : ISetupSettings;
 
   public keyCards : Array<string>;
-  public neverSetupCards : Array<string>;
 
   public setups : Array<any>;
 
   constructor() {
     var self = this;
     this.deck = DeckStore;
-    this.neverSetupCards = ['02006', '02034', '01035', '03025', '02088', '02102', '02116', '03021', '02102'];
 
     this.exampleSetup = {draw:[]};
     this.onChanges = [];
@@ -247,7 +245,7 @@ class SetupStoreStatic implements ISetupStore {
       return this.setUp(setup, remainingCards);
     }
 
-    if (card.cost + setup.currentCost <= 8){
+    if (card.cost + setup.currentCost <= setup.maxCost){
       var cardNotUsedSetup = $.extend(true, {}, setup)
 
       if (card.is_limited){
@@ -296,26 +294,10 @@ class SetupStoreStatic implements ISetupStore {
       this.stats.mulligans++;
       this.updateStats(this.noMulliganStats, previousSetup);
     }
-    var drawDeck = this.deck.getDrawDeck();
-    var deckSize = drawDeck.length;
-    var draw = [];
-    while (draw.length < 7){
-      var pos = Math.floor((Math.random() * deckSize));
-      if (draw.filter(function(c) { return c == pos }).length > 0) {
-        continue;
-      }
-      draw.push(pos);
-    }
 
-    var filteredDraw = draw.filter((d) => {
-      var card = drawDeck[d];
-      return (card.type_code == 'character'
-             || card.type_code == 'location'
-             || card.type_code == 'attachment') && ! card.is_restricted && this.neverSetupCards.indexOf(card.code) == -1;
-    })
-
-    var possibleSetup = this.setUp({
+    var setup = {
       currentCost: 0,
+      maxCost: 8,
       limitedUsed: false,
       distinctCharacters: 0,
       hasFourCostCharacter: 0,
@@ -333,7 +315,40 @@ class SetupStoreStatic implements ISetupStore {
       intrigueStrength: 0,
       powerStrength: 0,
       econCards: 0
-    }, filteredDraw);
+    };
+
+    var drawDeck = this.deck.getDrawDeck(); //get a copy of the draw deck
+    var deckSize = drawDeck.length;
+    var draw = [];
+    var fixedPos = null;
+    var drawSize = 7;
+
+    drawDeck.filter(function(c) {return c.is_setup_locked == true}).forEach(function(c) {
+      fixedPos = drawDeck.indexOf(c);
+      setup.cards.push(fixedPos);
+      setup.maxCost = 4 + c.cost; //assume House of Red Door for now
+      setup.currentCost += c.cost;
+      setup.income += c.income;
+      draw.push(fixedPos);
+      drawSize = 8;
+    });
+
+    while (draw.length < drawSize){
+      var pos = Math.floor((Math.random() * deckSize));
+      if (draw.filter(function(c) { return c == pos }).length > 0) {
+        continue;
+      }
+      draw.push(pos);
+    }
+
+    var filteredDraw = draw.filter((d) => {
+      var card = drawDeck[d];
+      return (card.type_code == 'character'
+             || card.type_code == 'location'
+             || card.type_code == 'attachment') && ! card.never_setup && ! card.is_setup_locked;
+    })
+
+    var possibleSetup = this.setUp(setup, filteredDraw);
 
     var bestSetup = possibleSetup[0];
     possibleSetup.forEach((setup) => {

@@ -6,6 +6,7 @@ class DeckActionID
     static MARK_AVOID_CARD = "DECK.MARK_AVOID_CARD";
     static MARK_NEVER_CARD = "DECK.MARK_NEVER_CARD";
     static MARK_ECON = "DECK.MARK_ECON";
+    static MARK_SETUP_LOCKED = "DECK.MARK_SETUP_LOCKED";
 }
 
 export = DeckActionID;

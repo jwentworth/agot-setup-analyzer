@@ -85,6 +85,13 @@ class CardSettings extends React.Component<ICardSettingsProps, ICardSettingsStat
     });
   }
 
+  public onSetupLock(){
+    AppDispatcher.dispatch({
+      actionType: DeckActionID.MARK_SETUP_LOCKED,
+      data: this.props.card.code
+    });
+  }
+
 
   public render() {
     var card = this.props.card;
@@ -96,12 +103,25 @@ class CardSettings extends React.Component<ICardSettingsProps, ICardSettingsStat
 
     if (card.is_key_card){
       className += " key-card";
-    } else if (card.is_avoided){
+    } 
+    if (card.is_avoided){
       className += " avoided-card";
-    } else if (card.is_restricted){
+    } 
+    if (card.never_setup){
       className += " restricted-card";
-    } else if (card.is_econ){
+    }
+    if (card.is_econ){
       className += " econ-card";
+    }
+    if (card.is_setup_locked){
+      className += " setup-locked";
+    }
+
+    var lockButton = (
+      <button className="setup-lock-button" onClick={this.onSetupLock.bind(this)}><i className="fa fa-lock fa-fw"></i></button>
+    );
+    if (card.cost > 3 || card.type_code != 'location' || !card.is_unique || card.is_limited){
+      lockButton = null;
     }
 
     if (card.type_code == 'character'
@@ -114,6 +134,7 @@ class CardSettings extends React.Component<ICardSettingsProps, ICardSettingsStat
               <button className="income-button" onClick={this.onMarkEcon.bind(this)}><i className="fa fa-dollar fa-fw"></i></button>
               <button className="avoid-button" onClick={this.onMarkAvoided.bind(this)}><i className="fa fa-exclamation-triangle fa-fw"></i></button>
               <button className="restricted-button" onClick={this.onMarkRestricted.bind(this)}><i className="fa fa-ban fa-fw"></i></button>
+              {lockButton}
             </div>
           );
         } else{

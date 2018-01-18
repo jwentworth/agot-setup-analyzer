@@ -35,5 +35,5 @@ gulp.task('default', ['scripts', 'card-data'], function() {
 });
 
 gulp.task('watch', ['default'], function() {
-  gulp.watch(['js/**/*.ts', 'js/**/*.tsx'], ['default']);
+  gulp.watch(['js/**/*.ts', 'js/**/*.tsx', 'js/**/*.json'], ['default']);
 });
