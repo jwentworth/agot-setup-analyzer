@@ -29,7 +29,7 @@ class CardItem extends React.Component<ICardItemProps, ICardItemState> {
 
 
   public render() {
-    var image = "http://thronesdb.com/" + this.props.card.imagesrc;
+    var image = this.props.card.image_url;
     return (
       <li>
           <img src={image}/>

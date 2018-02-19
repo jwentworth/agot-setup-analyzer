@@ -13,7 +13,7 @@ interface ICard {
   type_code : string;
   cost : number;
   strength : number;
-  imagesrc : string;
+  image_url : string;
   is_unique : boolean;
   is_loyal : boolean;
   is_military : boolean;

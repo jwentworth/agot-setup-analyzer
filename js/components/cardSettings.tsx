@@ -96,7 +96,7 @@ class CardSettings extends React.Component<ICardSettingsProps, ICardSettingsStat
   public render() {
     var card = this.props.card;
 
-    var image = "http://thronesdb.com/" + card.imagesrc;
+    var image = card.image_url;
     var className = "card-container";
 
     var controls = null;

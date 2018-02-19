@@ -69,7 +69,7 @@ public onNext(){
 
           var card = this.props.drawDeck[pos];
           var code = card.code + i;
-          var image = "http://thronesdb.com/" + card.imagesrc;
+          var image = card.image_url;
           var className = "card-container";
 
           if (this.props.setups[this.state.shownSetup].cards.filter((p) => p == pos).length > 0){
@@ -87,7 +87,7 @@ public onNext(){
 
             var card = this.props.drawDeck[pos];
             var code = card.code + i;
-            var image = "http://thronesdb.com/" + card.imagesrc;
+            var image = card.image_url;
             var className = "card-container";
 
             if (this.props.setups[this.state.shownSetup].mulliganed.cards.filter((p) => p == pos).length > 0){
