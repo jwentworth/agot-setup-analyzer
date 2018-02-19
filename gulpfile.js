@@ -23,7 +23,7 @@ gulp.task('card-data', function(){
 
 gulp.task('scripts', function() {
     var tsResult = tsProject.src()
-      .pipe(ts(tsProject));
+      .pipe(tsProject());
       return tsResult.js.pipe(gulp.dest('build'));
 });
 

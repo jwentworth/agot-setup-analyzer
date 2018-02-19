@@ -427,14 +427,19 @@ class SimulationStats extends React.Component<ISimulationStatsProps, ISimulation
 
 
     var cardUsageData = this.getBaseCardCountConfig();
+    
+    let withMulliganData: number[] = [];
+    let withoutMulliganData: number[] = [];
     for (var i = 0; i < 8; i++){
       var withMulligan = Math.round(10000*this.props.stats.cardCounts[i] / this.props.stats.simulations)/100;
       var withoutMuligan = Math.round(10000*this.props.noMulliganStats.cardCounts[i] / this.props.stats.simulations)/100;
 
-      cardUsageData.series[0].data.push(withMulligan);
-      cardUsageData.series[1].data.push(withoutMuligan);
+      withMulliganData.push(withMulligan);
+      withoutMulliganData.push(withoutMuligan);
       cardUsageData.series[2].data[i].push(withMulligan);
     }
+    cardUsageData.series[0].data = withMulliganData;
+    cardUsageData.series[1].data = withoutMulliganData;
 
     var econCardsData = this.getBaseEconCountConfig();
     for (var i = 0; i < 8; i++){
