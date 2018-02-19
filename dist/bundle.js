@@ -176,7 +176,7 @@ var CardItem = (function (_super) {
         return false;
     };
     CardItem.prototype.render = function () {
-        var image = "http://thronesdb.com/" + this.props.card.imagesrc;
+        var image = this.props.card.image_url;
         return (React.createElement("li", null,
             React.createElement("img", { src: image }),
             React.createElement("span", { className: "count" },
@@ -455,7 +455,7 @@ var CardSettings = (function (_super) {
     };
     CardSettings.prototype.render = function () {
         var card = this.props.card;
-        var image = "http://thronesdb.com/" + card.imagesrc;
+        var image = card.image_url;
         var className = "card-container";
         var controls = null;
         if (card.is_key_card) {
@@ -780,7 +780,7 @@ var SetupExample = (function (_super) {
                 i++;
                 var card = _this.props.drawDeck[pos];
                 var code = card.code + i;
-                var image = "http://thronesdb.com/" + card.imagesrc;
+                var image = card.image_url;
                 var className = "card-container";
                 if (_this.props.setups[_this.state.shownSetup].cards.filter(function (p) { return p == pos; }).length > 0) {
                     className += " selected";
@@ -794,7 +794,7 @@ var SetupExample = (function (_super) {
                     i++;
                     var card = _this.props.drawDeck[pos];
                     var code = card.code + i;
-                    var image = "http://thronesdb.com/" + card.imagesrc;
+                    var image = card.image_url;
                     var className = "card-container";
                     if (_this.props.setups[_this.state.shownSetup].mulliganed.cards.filter(function (p) { return p == pos; }).length > 0) {
                         className += " selected";
