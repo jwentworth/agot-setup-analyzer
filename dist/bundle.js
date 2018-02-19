@@ -355,7 +355,7 @@ var About = (function (_super) {
     About.prototype.render = function () {
         return (React.createElement("section", { className: "about" },
             React.createElement("h2", null, "Now copy paste decks directly from ThronesDB! Just select and copy the decklist directly from either the edit or view screen"),
-            React.createElement("h3", null, "Latest Full Pack: Kingsmoot"),
+            React.createElement("h3", null, "Latest Full Pack: Favor of the Old Gods"),
             React.createElement("p", null, "To use this get your deck in text format and paste into the box on the right. Thronesdb's text download option is this format exactly, though I'm sure other editors can provide a similar format"),
             React.createElement("p", null,
                 "This tool was made to analyze the setup strength of various decks. After importing your deck it will draw random set up hands (right now 5,000 hands), and determine the best(ish) possible setup and gather stats. Right now it's logic is can probably be better. There are settings for determining hand quality and mulligans which can be found on the \"Configure\" tab after importing. The rules this currently uses to determine the ",
@@ -1200,13 +1200,17 @@ var SimulationStats = (function (_super) {
         });
         var options = {};
         var cardUsageData = this.getBaseCardCountConfig();
+        var withMulliganData = [];
+        var withoutMulliganData = [];
         for (var i = 0; i < 8; i++) {
             var withMulligan = Math.round(10000 * this.props.stats.cardCounts[i] / this.props.stats.simulations) / 100;
             var withoutMuligan = Math.round(10000 * this.props.noMulliganStats.cardCounts[i] / this.props.stats.simulations) / 100;
-            cardUsageData.series[0].data.push(withMulligan);
-            cardUsageData.series[1].data.push(withoutMuligan);
+            withMulliganData.push(withMulligan);
+            withoutMulliganData.push(withoutMuligan);
             cardUsageData.series[2].data[i].push(withMulligan);
         }
+        cardUsageData.series[0].data = withMulliganData;
+        cardUsageData.series[1].data = withoutMulliganData;
         var econCardsData = this.getBaseEconCountConfig();
         for (var i = 0; i < 8; i++) {
             var withMulligan = Math.round(10000 * this.props.stats.econCounts[i] / this.props.stats.simulations) / 100;
