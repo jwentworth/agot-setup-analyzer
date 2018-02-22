@@ -5,7 +5,6 @@
 /*global React */
 
 /// <reference path="../interfaces.d.ts"/>
-/// <reference path="../libs/react-d3.d.ts" />
 
 import * as React from "react";
 
