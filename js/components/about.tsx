@@ -4,8 +4,9 @@
 /*jshint newcap: false */
 /*global React */
 
-/// <reference path="../../typings/tsd.d.ts" />
 /// <reference path="../interfaces.d.ts"/>
+
+import * as React from "react";
 
 interface IAboutProps {
 }

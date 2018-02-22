@@ -4,14 +4,14 @@
 /*jshint newcap: false */
 /*global React */
 
-/// <reference path="../../typings/tsd.d.ts" />
 /// <reference path="../interfaces.d.ts"/>
 /// <reference path="../libs/react-d3.d.ts" />
 
+import * as React from "react";
+
+
 import { CardItem } from "../cardItem";
 import ReactHighcharts = require('react-highcharts');
-
-
 
 
 interface ISimulationStatsProps {

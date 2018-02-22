@@ -4,9 +4,10 @@
 /*jshint newcap: false */
 /*global React */
 
-/// <reference path="../../typings/tsd.d.ts" />
 /// <reference path="../interfaces.d.ts"/>
 /// <reference path="../libs/react-d3.d.ts" />
+
+import * as React from "react";
 
 import { CardItem } from "../cardItem";
 import { About } from "./about"
@@ -90,8 +91,8 @@ class Simulation extends React.Component<ISimulationProps, ISimulationState> {
     if (this.state.percentage < 100){
       top = (
         <div className="progress">
-          <div className="progress-bar" role="progressbar" aria-valuenow="{this.state.percentage}"
-          aria-valuemin="0" aria-valuemax="100" style={{width: this.state.percentage +'%'}}>
+          <div className="progress-bar" role="progressbar" aria-valuenow={this.state.percentage}
+          aria-valuemin={0} aria-valuemax={100} style={{width: this.state.percentage +'%'}}>
             Simulating... {this.state.percentage}%
           </div>
         </div>

@@ -3,8 +3,6 @@
 /*jshint trailing:false */
 /*jshint newcap:false */
 
-/// <reference path="../libs/jquery.d.ts" />
-/// <reference path="../../typings/tsd.d.ts" />
 /// <reference path="../interfaces.d.ts"/>
 
 import AppDispatcher = require('../dispatcher/AppDispatcher');
@@ -82,7 +80,7 @@ class DeckStoreStatic implements IDeckStore {
 
 
   private addLimitedStatus(card:ICard){
-    if ('is_limited' in card){
+    if (card.hasOwnProperty('is_limited')){
       //data is manually set, don't determine it now
       return;
     }

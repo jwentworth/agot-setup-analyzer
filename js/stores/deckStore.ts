@@ -3,8 +3,6 @@
 /*jshint trailing:false */
 /*jshint newcap:false */
 
-/// <reference path="../libs/jquery.d.ts" />
-/// <reference path="../../typings/tsd.d.ts" />
 /// <reference path="../interfaces.d.ts"/>
 
 import AppDispatcher = require('../dispatcher/AppDispatcher');
@@ -16,6 +14,7 @@ import DeckActionID = require('../actions/DeckActionID');
 class DeckStoreStatic implements IDeckStore {
   private allCards : { [id: string] : ICard };
   public drawDeck : Array<ICard>;
+  public plotDeck : Array<ICard>;
   public displayDeck : Array<ICard>;
   public onChanges : Array<any>;
 
@@ -116,6 +115,7 @@ class DeckStoreStatic implements IDeckStore {
     var regexp = new RegExp('([0-9])x[ ]+([^(\\n]+)(\\([^)\\n]+\\))?', 'g')
 
     this.drawDeck = [];
+    this.plotDeck = [];
     this.displayDeck = [];
 
       var cardToAdd = regexp.exec(text);
@@ -141,7 +141,10 @@ class DeckStoreStatic implements IDeckStore {
           }
         }
 
-        if (card && card.type_code != "plot"){
+        if (card &&card.type_code == "plot"){
+          this.plotDeck.push(card);
+        }
+        else if (card){
           card.count = +cardToAdd[1];
           card.setup_count = 0;
 
@@ -170,7 +173,7 @@ class DeckStoreStatic implements IDeckStore {
 
 
   private addLimitedStatus(card:ICard){
-    if ('is_limited' in card){
+    if (card.hasOwnProperty('is_limited')){
       //data is manually set, don't determine it now
       return;
     }
@@ -183,7 +186,7 @@ class DeckStoreStatic implements IDeckStore {
     var incomeRegex = new RegExp('\\+([0-9]) Income', 'g');
     var incomeMatches = incomeRegex.exec(card.text);
 
-    if ('is_econ' in card){
+    if (card.hasOwnProperty('is_econ')){
       //data is manually set, don't determine it now
       return;
     }

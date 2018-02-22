@@ -4,11 +4,12 @@
 /*jshint newcap:false */
 /*global React, Router*/
 
-/// <reference path="libs/jquery.d.ts" />
 /// <reference path="libs/highcharts.d.ts" />
 
-/// <reference path="../typings/tsd.d.ts" />
 /// <reference path="./interfaces.d.ts"/>
+
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 
 import AppDispatcher = require('./dispatcher/AppDispatcher');
 import DeckStore = require('./stores/deckStore')

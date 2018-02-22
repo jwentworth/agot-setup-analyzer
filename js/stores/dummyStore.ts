@@ -3,8 +3,6 @@
 /*jshint trailing:false */
 /*jshint newcap:false */
 
-/// <reference path="../libs/jquery.d.ts" />
-/// <reference path="../../typings/tsd.d.ts" />
 /// <reference path="../interfaces.d.ts"/>
 
 console.log("dummyStore");

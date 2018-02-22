@@ -29,7 +29,6 @@
         "interfaces.d.ts",
         "libs/chart.d.ts",
         "libs/highcharts.d.ts",
-        "libs/jquery.d.ts",
         "libs/react-d3.d.ts",
         "stores/cardStore.ts",
         "stores/deckStore.ts",

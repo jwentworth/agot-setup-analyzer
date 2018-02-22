@@ -4,8 +4,10 @@
 /*jshint newcap: false */
 /*global React */
 
-/// <reference path="../typings/tsd.d.ts" />
 /// <reference path="./interfaces.d.ts"/>
+
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 
 class CardItem extends React.Component<ICardItemProps, ICardItemState> {
 
