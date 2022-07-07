@@ -12,8 +12,8 @@ import * as ReactDOM from "react-dom";
 
 import AppDispatcher = require('../dispatcher/AppDispatcher');
 import DeckActionID = require('../actions/deckActionID');
-import SetupActionID = require('../actions/SetupActionID');
-import { SetupActions } from '../actions/SetupActions';
+import SetupActionID = require('../actions/setupActionID');
+import { SetupActions } from '../actions/setupActions';
 
 
 interface IDeckImportProps {

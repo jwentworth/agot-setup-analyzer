@@ -7,7 +7,7 @@
 
 console.log("dummyAction");
 
-import AppDispatcher = require('../dispatcher/appDispatcher');
+import AppDispatcher = require('../dispatcher/AppDispatcher');
 
 /*
 This does nothing, but I'm leaving it for testing purposes for the time being

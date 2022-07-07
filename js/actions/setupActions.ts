@@ -6,8 +6,8 @@
 
 /// <reference path="../interfaces.d.ts"/>
 
-import AppDispatcher = require('../dispatcher/appDispatcher');
-import SetupActionID = require('./setupActionId');
+import AppDispatcher = require('../dispatcher/AppDispatcher');
+import SetupActionID = require('./setupActionID');
 
 class SetupActionsStatic {
 
