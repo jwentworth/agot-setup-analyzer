@@ -26,5 +26,9 @@
   },
   "overrides": {
     "graceful-fs": "^4.2.9"
+  },
+  "engines": {
+    "node": ">=16",
+    "npm": ">=8"
   }
 }
