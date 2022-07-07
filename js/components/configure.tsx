@@ -12,7 +12,7 @@ import { CardSettings } from "./cardSettings";
 import DeckStore = require('../stores/deckStore')
 import SetupStore = require('../stores/setupStore')
 import AppDispatcher = require('../dispatcher/AppDispatcher');
-import SetupActionID = require('../actions/SetupActionID');
+import SetupActionID = require('../actions/setupActionID');
 
 interface IConfigureProps {
   settings : ISetupSettings;

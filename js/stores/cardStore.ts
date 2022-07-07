@@ -6,7 +6,7 @@
 /// <reference path="../interfaces.d.ts"/>
 
 import AppDispatcher = require('../dispatcher/AppDispatcher');
-import DeckActionID = require('../actions/DeckActionID');
+import DeckActionID = require('../actions/deckActionID');
 
 /*
  * Stores direct information about the currently loaded Deck

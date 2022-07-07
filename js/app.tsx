@@ -11,15 +11,13 @@ import * as ReactDOM from "react-dom";
 
 import AppDispatcher = require('./dispatcher/AppDispatcher');
 import DeckStore = require('./stores/deckStore')
-import { SetupActions } from './actions/SetupActions';
+import { SetupActions } from './actions/setupActions';
 import SetupStore = require('./stores/setupStore')
-import { DeckImport } from "./components/DeckImport"
-import { Simulation } from "./components/Simulation"
+import { DeckImport } from "./components/deckImport"
+import { Simulation } from "./components/simulation"
 
 import { Bar as BarChart } from 'react-chartjs';
 import ReactHighcharts = require('react-highcharts');
-
-
 
 class DeckAnalyzerApp extends React.Component<IAppProps, IAppState> {
   public state : IAppState;

@@ -17,7 +17,7 @@ import { SetupExample } from "./setupExample"
 
 
 import AppDispatcher = require('../dispatcher/AppDispatcher');
-import SetupActionID = require('../actions/SetupActionID');
+import SetupActionID = require('../actions/setupActionID');
 
 
 interface ISimulationProps {

@@ -5,13 +5,14 @@
     "chart.js": "^1.0.2",
     "flux": "2.1.1",
     "react-chartjs": "^0.7.3",
-    "react-dom": "^16"
+    "react-dom": "^16",
+    "react-highcharts": "^16"
   },
   "devDependencies": {
     "@types/react-dom": "^16",
     "@types/react": "^16",
     "browserify": "*",
-    "gulp": "*",
+    "gulp": "^3",
     "gulp-json-concat": "^0.1.1",
     "gulp-jsonmin": "^1.1.0",
     "gulp-merge-json": "^1.2.1",
@@ -22,5 +23,12 @@
     "react": "^16",
     "typescript": "^2.6.2",
     "vinyl-source-stream": "*"
+  },
+  "overrides": {
+    "graceful-fs": "^4.2.9"
+  },
+  "engines": {
+    "node": ">=16",
+    "npm": ">=8"
   }
 }
