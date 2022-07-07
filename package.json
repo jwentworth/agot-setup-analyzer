@@ -22,5 +22,8 @@
     "react": "^16",
     "typescript": "^2.6.2",
     "vinyl-source-stream": "*"
+  },
+  "overrides": {
+    "graceful-fs": "^4.2.9"
   }
 }
