@@ -12,14 +12,9 @@ Instructions for getting started developing:
 npm install
 ```
 
-If you don't already have gulp
+Then compile assets by typing
 ```
-npm install -g gulp
-```
-
-Then compile assets by tping
-```
-gulp
+npx gulp
 ```
 
 This should compile the typescript assets into JS assets inside of the dist/ folder, as well as compile the card data into a single file.
