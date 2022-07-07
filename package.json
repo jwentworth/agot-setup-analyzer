@@ -11,7 +11,7 @@
     "@types/react-dom": "^16",
     "@types/react": "^16",
     "browserify": "*",
-    "gulp": "*",
+    "gulp": "^3",
     "gulp-json-concat": "^0.1.1",
     "gulp-jsonmin": "^1.1.0",
     "gulp-merge-json": "^1.2.1",
