@@ -22,10 +22,10 @@ This should compile the typescript assets into JS assets inside of the dist/ fol
 To run locally
 
 ```
-python -m SimpleHTTPServer
+npm run start
 ```
 
-And hit localhost:8000
+And hit `http://localhost:8080`
 
 The current structure was mostly derived from here: https://github.com/tastejs/todomvc/tree/gh-pages/examples/typescript-react
 Including many of the base css styling still being held over from that. 
