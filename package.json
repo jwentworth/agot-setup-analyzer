@@ -9,8 +9,8 @@
     "react-highcharts": "^16"
   },
   "devDependencies": {
-    "@types/react-dom": "^16",
     "@types/react": "^16",
+    "@types/react-dom": "^16",
     "browserify": "*",
     "gulp": "^3",
     "gulp-json-concat": "^0.1.1",
@@ -19,6 +19,7 @@
     "gulp-minify": "^2.1.0",
     "gulp-react": "*",
     "gulp-typescript": "*",
+    "http-server": "^14.1.1",
     "merge2": "*",
     "react": "^16",
     "typescript": "^2.6.2",
@@ -30,5 +31,9 @@
   "engines": {
     "node": ">=16",
     "npm": ">=8"
+  },
+  "scripts": {
+    "build": "node scripts/fetch-data.js && gulp",
+    "start": "http-server"
   }
 }
