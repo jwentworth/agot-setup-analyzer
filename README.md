@@ -12,14 +12,14 @@ Instructions for getting started developing:
 npm install
 ```
 
-Then compile assets by typing
+Then build the application by typing
 ```
-npx gulp
+npm run build
 ```
+This should compile the typescript assets into JS assets inside the `dist/` folder, 
+and download/process the card-data from ThronesDB's public API.
 
-This should compile the typescript assets into JS assets inside of the dist/ folder, as well as compile the card data into a single file.
-
-To run locally
+To run locally type
 
 ```
 npm run start

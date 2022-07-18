@@ -33,6 +33,7 @@
     "npm": ">=8"
   },
   "scripts": {
+    "build": "node scripts/fetch-data.js && gulp",
     "start": "http-server"
   }
 }
